@@ -13,7 +13,7 @@ class Main extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='main'>
                 <UI.Group>
                     <UI.Header className='group-header' level='1' aside={
                         <span className='all-items'
@@ -52,16 +52,135 @@ class Main extends React.Component {
                         </div>
                     </UI.Header>
 
-                    <UI.Gallery slideWidth='150px' style={{ height: 300 }} className='gallery-wrap'>
-                        {
-                            <div className='gallery-container'>
-                                <img className='popular-image'
-                                     src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>
-                                <div>Air Jordan XI LOW</div>
-                                <div>Роскошная модель XI возвращается!</div>
-                            </div>
-                        }
+                    <UI.Gallery slideWidth='150px' style={{ height: 270 }} className='gallery-wrap'>
+                        <div className='gallery-container'>
+                            <img className='popular-image'
+                                 src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>
+                            <div>Air Jordan XI LOW</div>
+                            <div>Роскошная модель XI возвращается!</div>
+                        </div>
+                        <div className='gallery-container'>
+                            <img className='popular-image'
+                                 src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>
+                            <div>Air Jordan XI LOW</div>
+                            <div>Роскошная модель XI возвращается!</div>
+                        </div>
+                        <div className='gallery-container'>
+                            <img className='popular-image'
+                                 src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>
+                            <div>Air Jordan XI LOW</div>
+                            <div>Роскошная модель XI возвращается!</div>
+                        </div>
+                        <div className='gallery-container'>
+                            <img className='popular-image'
+                                 src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>
+                            <div>Air Jordan XI LOW</div>
+                            <div>Роскошная модель XI возвращается!</div>
+                        </div>
                     </UI.Gallery>
+                </UI.Group>
+
+                <UI.Group>
+                    <UI.Header className='group-header' level='1' aside={
+                        <span className='all-items'
+                              style={{ color: colors.accentBlue }}
+                              onClick={ () => {} }>
+                                Показать все
+                            </span>
+                    }>
+                        <div className='group-title font'>
+                            Для вас
+                        </div>
+                    </UI.Header>
+
+                    <UI.Gallery initialSlideIndex='1' align="center" slideWidth='300px' style={{ height: 193 }} className='gallery-wrap'>
+                        <div>
+                            <img className='promo-image'
+                                 src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>
+                        </div>
+                        <div>
+                            <img className='promo-image'
+                                 src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>
+                        </div>
+                        <div>
+                            <img className='promo-image'
+                                 src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>
+                        </div>
+                        <div>
+                            <img className='promo-image'
+                                src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>
+                        </div>
+                    </UI.Gallery>
+                </UI.Group>
+
+                <UI.Pane>
+                    <div className='categories-container'>
+                        <div className='category'>
+                            <div className='category-wrap'>
+                                <div className='category-text'>Новинки</div>
+                            </div>
+                        </div>
+                        <div className='category'>
+                            <div className='category-wrap'>
+                                <div className='category-text'>Одежда</div>
+                            </div>
+                        </div>
+                        <div className='category'><div className='category-wrap'><div className='category-text'>Обувь</div></div></div>
+                        <div className='category'><div className='category-wrap'><div className='category-text'>Аксессуары</div></div></div>
+                    </div>
+                </UI.Pane>
+
+                <UI.Group>
+                    <UI.Header className='group-header' level='1' aside={
+                        <span className='all-items'
+                              style={{ color: colors.accentBlue }}
+                              onClick={ () => {} }>
+                                Показать все
+                            </span>
+                    }>
+                        <div className='group-title font'>
+                            В спортивном стиле
+                        </div>
+                    </UI.Header>
+
+                    <UI.List>
+                        <UI.ListItem>
+                            <div className='sport-item'>
+                                <img className='sport-item-image' src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>
+                                <div className='sport-item-info'>
+                                    <div className='rr'>
+                                        <div className='sport-item-name'>
+                                            Nike Air Max 270 Flyknit
+                                        </div>
+                                        <div className='sport-item-description'>
+                                            Мужская обувь
+                                        </div>
+                                        <div className='sport-item-price'>
+                                            8 800 ₽
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </UI.ListItem>
+                        <UI.ListItem>
+                            <div className='sport-item'>
+                                <img className='sport-item-image' src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>
+                                <div className='sport-item-info'>
+                                    <div className='rr'>
+                                        <div className='sport-item-name'>
+                                            Nike Air Max 270 Flyknit
+                                        </div>
+                                        <div className='sport-item-description'>
+                                            Мужская обувь
+                                        </div>
+                                        <div className='sport-item-price'>
+                                            8 800 ₽
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </UI.ListItem>
+                    </UI.List>
                 </UI.Group>
             </div>
         )

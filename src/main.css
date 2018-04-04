@@ -44,3 +44,107 @@
     margin: auto;
     margin-top: 5px;
 }
+
+.promo-image {
+    width: 290px;
+    height: 180px;
+    border-radius: 7px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.categories-container {
+    overflow: auto;
+    white-space: nowrap;
+    height: 100%;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.categories-container::-webkit-scrollbar {
+    display: none;
+}
+
+.category {
+    display: inline-block;
+    text-align: center;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-decoration: none;
+    color: #71757A;
+    background-color: #F2F6FA;
+    border-radius: 20px;
+    height: 100%;
+    font-weight: 400;
+}
+
+.category-wrap {
+    height: 100%;
+    display: table;
+}
+
+.category-text {
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.main .NewPane--ios {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 0px;
+    padding-right: 0px;
+    height: 35px;
+}
+
+.main .NewPane--android {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 0px;
+    padding-right: 0px;
+    height: 35px;
+}
+
+.sport-item-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 7px;
+    display: inline-block;
+}
+
+.sport-item-info {
+    display: inline-block;
+    position: absolute;
+    width: calc(100% - 100px);
+    margin-left: 12px;
+}
+
+.List--ios::before, .List--ios::after {
+    height: 0px;
+}
+
+.List--android::before, .List--android::after {
+    height: 0px;
+}
+
+.main .ListItem--ios .ListItem__before::before {
+    margin-left: 110px;
+}
+
+.main .ListItem--ios .ListItem__in {
+    padding-left: 12px;
+}
+
+.main .ListItem--android .ListItem__in {
+    padding-left: 15px;
+}
+
+.main .ListItem--ios .ListItem__main {
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.main .ListItem--android .ListItem__main {
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
