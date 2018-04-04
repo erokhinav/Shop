@@ -27,15 +27,21 @@ class Main extends React.Component {
                         </div>
                     </UI.Header>
 
-                    <UI.Gallery slideWidth='300px' style={{ height: 200 }} className='gallery-wrap'>
+                    <UI.Gallery slideWidth='300px' style={{ height: 205 }} className='gallery-wrap'>
                     {
                         <div className='gallery-container'>
                             <img className='foryou-image'
                                  src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>
-                            <div>Air Jordan XI LOW</div>
-                            <div>Роскошная модель XI возвращается!</div>
+                            <div className='foryou-name'>Air Jordan XI LOW</div>
+                            <div className='foryou-description'>Роскошная модель XI возвращается! При покупке</div>
                         </div>
                     }
+                        <div className='gallery-container'>
+                            <img className='foryou-image'
+                                 src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>
+                            <div className='foryou-name'>Air Jordan XI LOW</div>
+                            <div className='foryou-description'>Роскошная модель XI возвращается! При покупке</div>
+                        </div>
                     </UI.Gallery>
                 </UI.Group>
 
@@ -52,30 +58,30 @@ class Main extends React.Component {
                         </div>
                     </UI.Header>
 
-                    <UI.Gallery slideWidth='150px' style={{ height: 270 }} className='gallery-wrap'>
+                    <UI.Gallery slideWidth='150px' style={{ height: 245 }} className='gallery-wrap'>
                         <div className='gallery-container'>
                             <img className='popular-image'
                                  src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>
-                            <div>Air Jordan XI LOW</div>
-                            <div>Роскошная модель XI возвращается!</div>
+                            <div className='popular-name'>Особый случай</div>
+                            <div className='popular-description'>Как выделиться из толпы</div>
                         </div>
                         <div className='gallery-container'>
                             <img className='popular-image'
                                  src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>
-                            <div>Air Jordan XI LOW</div>
-                            <div>Роскошная модель XI возвращается!</div>
+                            <div className='popular-name'>ASOS 4505</div>
+                            <div className='popular-description'>Спортивная экипировка</div>
                         </div>
                         <div className='gallery-container'>
                             <img className='popular-image'
                                  src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>
-                            <div>Air Jordan XI LOW</div>
-                            <div>Роскошная модель XI возвращается!</div>
+                            <div className='popular-name'>Особый случай</div>
+                            <div className='popular-description'>Как выделиться из толпы</div>
                         </div>
                         <div className='gallery-container'>
                             <img className='popular-image'
                                  src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>
-                            <div>Air Jordan XI LOW</div>
-                            <div>Роскошная модель XI возвращается!</div>
+                            <div className='popular-name'>Особый случай</div>
+                            <div className='popular-description'>Как выделиться из толпы</div>
                         </div>
                     </UI.Gallery>
                 </UI.Group>
@@ -148,16 +154,11 @@ class Main extends React.Component {
                             <div className='sport-item'>
                                 <img className='sport-item-image' src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>
                                 <div className='sport-item-info'>
-                                    <div className='rr'>
-                                        <div className='sport-item-name'>
-                                            Nike Air Max 270 Flyknit
-                                        </div>
-                                        <div className='sport-item-description'>
-                                            Мужская обувь
-                                        </div>
-                                        <div className='sport-item-price'>
-                                            8 800 ₽
-                                        </div>
+                                    <div className='sport-item-name'>Nike Air Max 270 Flyknit</div>
+                                    <div className='sport-item-description'>Мужская обувь</div>
+                                    <div className='sport-item-price'>
+                                        <div className='sport-item-price-current'>4 840 руб.</div>
+                                        <div className='sport-item-price-old'>4 840 руб.</div>
                                     </div>
                                 </div>
                             </div>
@@ -166,16 +167,10 @@ class Main extends React.Component {
                             <div className='sport-item'>
                                 <img className='sport-item-image' src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>
                                 <div className='sport-item-info'>
-                                    <div className='rr'>
-                                        <div className='sport-item-name'>
-                                            Nike Air Max 270 Flyknit
-                                        </div>
-                                        <div className='sport-item-description'>
-                                            Мужская обувь
-                                        </div>
-                                        <div className='sport-item-price'>
-                                            8 800 ₽
-                                        </div>
+                                    <div className='sport-item-name'>Nike Air Max 270 Flyknit</div>
+                                    <div className='sport-item-description'>Мужская обувь</div>
+                                    <div className='sport-item-price'>
+                                        <div className='sport-item-price-current'>4 840 руб.</div>
                                     </div>
                                 </div>
                             </div>

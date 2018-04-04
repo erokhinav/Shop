@@ -29,6 +29,28 @@
     border-radius: 7px;
 }
 
+.foryou-name {
+    margin-top: 5px;
+    color: black;
+    font-family: system-ui;
+    font-size: 15px;
+    overflow: hidden;
+    max-width: 96%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.foryou-description {
+    margin-top: 2px;
+    font-family: system-ui;
+    color: #959698;
+    font-size: 13.5px;
+    overflow: hidden;
+    max-width: 96%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .gallery-container {
     width: auto;
     margin-left: 10px;
@@ -38,6 +60,21 @@
     width: 140px;
     height: 180px;
     border-radius: 7px;
+}
+
+.popular-name {
+    margin-top: 3px;
+    color: #404143;
+    font-family: system-ui;
+    font-size: 14px;
+}
+
+.popular-description {
+    margin-top: 3px;
+    font-family: sans-serif;
+    color: #959698;
+    font-size: 12.8px;
+    line-height: 1.2;
 }
 
 .back-icon {
@@ -55,7 +92,8 @@
 }
 
 .categories-container {
-    overflow: auto;
+    overflow-y: hidden;
+    overflow-x: auto;
     white-space: nowrap;
     height: 100%;
     margin-left: 5px;
@@ -106,10 +144,59 @@
 }
 
 .sport-item-image {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     border-radius: 7px;
     display: inline-block;
+}
+
+.sport-item-name {
+    color: #2C2D2D;
+    font-family: system-ui;
+    font-size: 16px;
+    overflow: hidden;
+    max-width: 96%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sport-item-description {
+    font-family: system-ui;
+    color: #959698;
+    font-size: 14.5px;
+    overflow: hidden;
+    max-width: 96%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.4;
+}
+
+.sport-item-price-current {
+    display:inline-block;
+    margin-top: 15px;
+    color: #2C2D2D;
+    font-family: system-ui;
+    font-size: 14.5px;
+    overflow: hidden;
+    max-width: 96%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+.sport-item-price-old {
+    text-decoration: line-through;
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: 15px;
+    color: #959698;
+    font-family: system-ui;
+    font-size: 14.5px;
+    overflow: hidden;
+    max-width: 96%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 400;
 }
 
 .sport-item-info {
@@ -117,6 +204,7 @@
     position: absolute;
     width: calc(100% - 100px);
     margin-left: 12px;
+    margin-top: 4px;
 }
 
 .List--ios::before, .List--ios::after {
