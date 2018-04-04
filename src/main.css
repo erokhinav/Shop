@@ -1,0 +1,46 @@
+.View .ScrollView {
+    position: fixed;
+    width: 100%;
+    height: calc(100% - 90px);
+    overflow: scroll;
+    margin-top: 50px;
+    display: inline-flex;
+}
+
+.group-title {
+    color: black;
+}
+
+.group-header {
+    background-color: white;
+}
+
+.gallery-wrap {
+    background-color: white;
+}
+
+.all-items {
+    margin-top: 0px;
+}
+
+.foryou-image {
+    width: 280px;
+    height: 150px;
+    border-radius: 7px;
+}
+
+.gallery-container {
+    width: auto;
+    margin-left: 10px;
+}
+
+.popular-image {
+    width: 140px;
+    height: 180px;
+    border-radius: 7px;
+}
+
+.back-icon {
+    margin: auto;
+    margin-top: 5px;
+}

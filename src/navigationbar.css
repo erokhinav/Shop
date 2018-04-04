@@ -1,0 +1,52 @@
+.footer {
+    height: 40px;
+    background-color: #FBFBFC;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.header-pain {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.select-city {
+    font-size: 15px;
+    color: #71757A;
+}
+
+.select-box {
+    width: 30px;
+    float: left;
+}
+
+.select-city-icon {
+    float: right;
+}
+
+.header-pain .NewPane--ios {
+    padding-top: 12px;
+    height: 25px;
+}
+
+.header-pain .NewPane--android {
+    padding-top: 12px;
+    height: 25px;
+}
+
+.cart-button {
+    float: right;
+}
+
+.cart-button-text {
+    color: #71757A;
+    float: left;
+    margin-right: 3px;
+}
+
+.cart-button-icon {
+    float: right;
+}
