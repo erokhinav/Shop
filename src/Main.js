@@ -121,18 +121,18 @@ class Main extends React.Component {
 
                 <UI.Pane>
                     <div className='categories-container'>
-                        <div className='category'>
+                        <div className='category-main'>
                             <div className='category-wrap'>
                                 <div className='category-text'>Новинки</div>
                             </div>
                         </div>
-                        <div className='category'>
+                        <div className='category-main'>
                             <div className='category-wrap'>
                                 <div className='category-text'>Одежда</div>
                             </div>
                         </div>
-                        <div className='category'><div className='category-wrap'><div className='category-text'>Обувь</div></div></div>
-                        <div className='category'><div className='category-wrap'><div className='category-text'>Аксессуары</div></div></div>
+                        <div className='category-main'><div className='category-wrap'><div className='category-text'>Обувь</div></div></div>
+                        <div className='category-main'><div className='category-wrap'><div className='category-text'>Аксессуары</div></div></div>
                     </div>
                 </UI.Pane>
 
@@ -176,6 +176,39 @@ class Main extends React.Component {
                             </div>
                         </UI.ListItem>
                     </UI.List>
+                </UI.Group>
+
+                <UI.Group>
+                    <UI.Header className='group-header' level='1' aside={
+                        <span className='all-items'
+                              style={{ color: colors.accentBlue }}
+                              onClick={ () => {} }>
+                                Показать все
+                            </span>
+                    }>
+                        <div className='group-title font'>
+                            Для вас
+                        </div>
+                    </UI.Header>
+
+                    <UI.Gallery slideWidth='300px' style={{ height: 205 }} className='gallery-wrap'>
+                        {
+                            <div className='gallery-container'>
+                                <img className='foryou-image'
+                                     src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>
+                                <div className='foryou-name'>Air Jordan XI LOW</div>
+                                <div className='foryou-description'>Роскошная модель XI возвращается! При покупке</div>
+                            </div>
+                        }
+                        <div className='gallery-container'>
+                            <img className='foryou-image'
+                                 src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>
+                            <div className='foryou-name'>Air Jordan XI LOW</div>
+                            <div className='foryou-description'>Роскошная модель XI возвращается! При покупке</div>
+                        </div>
+                    </UI.Gallery>
+
+
                 </UI.Group>
             </div>
         )

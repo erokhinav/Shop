@@ -5,9 +5,7 @@ import './navigationbar.css';
 
 import { colors } from '@vkontakte/vkui';
 import IconChevron_back28 from '@vkontakte/vkui/dist/icons/28/chevron_back';
-import IconFavorite_outline24 from '@vkontakte/vkui/dist/icons/24/favorite_outline';
-import IconFavorite24 from '@vkontakte/vkui/dist/icons/24/favorite';
-import Icon16Dropdown from '@vkontakte/vkui/dist/icons/16/dropdown';
+import IconReply_outline24 from '@vkontakte/vkui/dist/icons/24/reply_outline';
 import Icon24Market from '@vkontakte/vkui/dist/icons/24/market';
 
 class NavigationBar extends React.Component {
@@ -33,11 +31,20 @@ class NavigationBar extends React.Component {
                     </UI.Pane>
                 </div>
 
-                <div className='footer'>
-                    <div className='icon-container'>
-                        <IconChevron_back28 className='back-icon'
-                                            fill={this.props.backView === undefined ? colors.separator : colors.headerBlue}/>
-                    </div>
+                <div className='bottom-pane'>
+                    <UI.Pane className='footer'>
+                        <div className='navigation'>
+                            <IconChevron_back28 className='back-icon'
+                                                fill={this.props.backView === undefined ?
+                                                    colors.placeholderForeground : colors.accentBlue}/>
+                            <IconChevron_back28 className='forward-icon'
+                                            fill={colors.accentBlue}/>
+                        </div>
+                        <div className='share'>
+                            <IconReply_outline24 className='share-icon'
+                                                fill={colors.accentBlue}/>
+                        </div>
+                    </UI.Pane>
                 </div>
             </div>
         )
