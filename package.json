@@ -5,6 +5,7 @@
   "dependencies": {
     "@vkontakte/vkui": "^1.5.0-beta.1",
     "ajv": "^6.4.0",
+    "font-awesome": "^4.7.0",
     "react": "^15.6.2",
     "react-dom": "^15.6.2",
     "react-scripts": "1.1.1"

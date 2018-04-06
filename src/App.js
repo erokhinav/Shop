@@ -4,13 +4,15 @@ import '@vkontakte/vkui/dist/vkui.css';
 import NavigationBar from './NavigationBar';
 import Main from './Main';
 import Category from './Category';
+import ItemInfo from './ItemInfo';
+import Cart from './Cart';
 
 class App extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            activePanel: 'Category',
+            activePanel: 'Main',
         };
     }
 
@@ -25,6 +27,14 @@ class App extends React.Component {
                 </UI.ScrollView>
                 <UI.ScrollView id='Category'>
                     <Category />
+                    <NavigationBar/>
+                </UI.ScrollView>
+                <UI.ScrollView id='ItemInfo'>
+                    <ItemInfo />
+                    <NavigationBar/>
+                </UI.ScrollView>
+                <UI.ScrollView id='Cart'>
+                    <Cart />
                     <NavigationBar/>
                 </UI.ScrollView>
             </UI.View>
