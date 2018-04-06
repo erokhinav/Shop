@@ -1,9 +1,13 @@
 import React from 'react';
 import * as UI from '@vkontakte/vkui';
+import PropTypes from 'prop-types';
 import '@vkontakte/vkui/dist/vkui.css';
 import NavigationBar from './NavigationBar';
 import Main from './Main';
+import Cart from './Cart';
+import ItemInfo from './ItemInfo';
 import Category from './Category';
+import {parse} from "./lib/yandex";
 
 class App extends React.Component {
 
@@ -18,7 +22,6 @@ class App extends React.Component {
         };
 
         this.market = parse('/yandex.yml');
-        console.log(this.market);
     }
 
     render() {

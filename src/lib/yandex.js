@@ -60,6 +60,7 @@ function loadYML(url) {
 
 export function parse(url) {
     let yml = loadYML(url);
+    console.log(yml);
     let shop = yml['yml_catalog']['shop'];
     return new Market(getTextValue(shop.name), getTextValue(shop.company), getTextValue(shop.url), parseCategories(shop.categories.category), parseOffers(shop.offers.offer));
 }
@@ -93,11 +94,11 @@ function parseCategories(categories) {
 }
 
 function getTextValue(element) {
-    return element['#text'];
+    return element ? element['#text'] : null;
 }
 
 function getAttributes(element) {
-    return element['@attributes'];
+    return element ? element['@attributes'] : [];
 }
 
 function xmlToJson(xml) {
@@ -106,7 +107,7 @@ function xmlToJson(xml) {
 
     const textType = 3;
     const elementType = 1;
-    const undefined = 'undefined';
+    const undefinedValue = 'undefined';
 
     if (xml.nodeType === elementType) { // element
         // do attributes
@@ -126,10 +127,10 @@ function xmlToJson(xml) {
         for (let i = 0; i < xml.childNodes.length; i++) {
             let item = xml.childNodes.item(i);
             let nodeName = item.nodeName;
-            if (typeof(obj[nodeName]) === undefined) {
+            if (typeof(obj[nodeName]) === undefinedValue) {
                 obj[nodeName] = xmlToJson(item);
             } else {
-                if (typeof(obj[nodeName].push) === undefined) {
+                if (typeof(obj[nodeName].push) === undefinedValue) {
                     let old = obj[nodeName];
                     obj[nodeName] = [];
                     obj[nodeName].push(old);

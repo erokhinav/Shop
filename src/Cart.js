@@ -3,8 +3,6 @@ import * as UI from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 import './cart.css';
 
-import { colors } from '@vkontakte/vkui';
-
 class Cart extends React.Component {
 
     constructor(props) {
