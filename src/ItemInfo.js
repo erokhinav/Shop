@@ -6,6 +6,12 @@ import '../node_modules/font-awesome/css/font-awesome.min.css';
 
 class ItemInfo extends React.Component {
 
+    static propTypes = {
+        name: PropTypes.string,
+        price: PropTypes.number,
+        categories: PropTypes.array,
+    };
+
     render() {
         return (
             <div className='iteminfo-container'>

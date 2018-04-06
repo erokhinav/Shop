@@ -2,14 +2,17 @@ import React from 'react';
 import * as UI from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 import './main.css';
+import PropTypes from "prop-types";
 
 import { colors } from '@vkontakte/vkui';
 
 class Main extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
+    static propTypes = {
+        cities: PropTypes.array,
+        promo: PropTypes.array,
+        categories: PropTypes.array,
+    };
 
     render() {
         return (

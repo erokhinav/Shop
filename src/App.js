@@ -9,6 +9,10 @@ import Cart from './Cart';
 
 class App extends React.Component {
 
+    static propTypes = {
+        currency: PropTypes.string,
+    };
+
     constructor(props) {
         super(props);
         this.state = {
