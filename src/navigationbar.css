@@ -27,9 +27,12 @@
 }
 
 .bottom-pane .NewPane--android {
-    padding-top: 0px;
-    padding-bottom: 0px;
-    height: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 0px;
+    padding-right: 0px;
+    height: 30px;
+    width: 100vw;
 }
 
 .header-pain {
@@ -40,7 +43,12 @@
 
 .select-city {
     font-size: 15px;
-    color: #71757A;
+    color: #9B9EA1;
+    background: url('https://pp.userapi.com/c845521/v845521932/1e734/ob-WTzOyrTo.jpg');
+    background-repeat: no-repeat;
+    background-size: 10px 10px;
+    background-position:right center;
+    border: none;
 }
 
 .select-box {

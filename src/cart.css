@@ -1,0 +1,133 @@
+.cart .ListItem--ios .ListItem__before::before {
+    margin-left: 105px;
+}
+
+.cart .ListItem--ios .ListItem__in {
+    padding-left: 12px;
+}
+
+.cart .ListItem--android .ListItem__in {
+    padding-left: 15px;
+}
+
+.cart .ListItem--ios .ListItem__main {
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.cart-item-image {
+    width: 90px;
+    height: 90px;
+    border-radius: 7px;
+    display: inline-block;
+}
+
+.cart-item-name {
+    color: #2C2D2D;
+    font-family: system-ui;
+    font-size: 16px;
+    overflow: hidden;
+    max-width: 96%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-left: 3px;
+}
+
+.cart-item-description {
+    font-family: system-ui;
+    color: #959698;
+    font-size: 14.5px;
+    overflow: hidden;
+    max-width: 96%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.4;
+}
+
+.cart-item-price-current {
+    display:inline-block;
+    margin-top: 15px;
+    color: #2C2D2D;
+    font-family: system-ui;
+    font-size: 14.5px;
+    overflow: hidden;
+    max-width: 96%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 500;
+    margin-left: 3px;
+}
+
+.cart-item-info {
+    display: inline-block;
+    position: absolute;
+    width: calc(100% - 100px);
+    margin-left: 10px;
+    margin-top: 4px;
+}
+
+.cart-item-options {
+    font-family: system-ui;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.4;
+}
+
+.cart-select-container {
+    display: inline-block;
+    border: 0px;
+    width: fit-content;
+    position: relative;
+    margin-right: 6px;
+}
+
+.cart-select-container::after {
+    font-family: FontAwesome;
+    content: "\f107";
+    font-size: 16px;
+    text-align: right;
+    position: absolute;
+    color: #528BCC;
+    right: 3px;
+    top: 1px;
+    text-rendering: optimizeLegibility;
+}
+
+.cart-select {
+    font-family: system-ui;
+    width: 100%;
+    color: #528BCC;
+    font-weight: 400;
+    font-size: 13px;
+    border: 0px;
+    background-color: white;
+}
+
+.cart-select-option {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.cart-sum {
+    background-color: #FBFBFB;
+    height: 60px;
+    border: 1px solid #E8E8E8;
+    width: 100%;
+    position: fixed;
+    text-align: center;
+    font-size: 14px;
+    color: #9B9EA1;
+    display: inline-block;
+    font: system-ui;
+    line-height: 55px;
+}
+
+.cart-sum-value {
+    color: black;
+    display: inline-block;
+    font: system-ui;
+    font-weight: 400;
+    font-size: 13px;
+}

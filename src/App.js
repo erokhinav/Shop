@@ -4,14 +4,13 @@ import '@vkontakte/vkui/dist/vkui.css';
 import NavigationBar from './NavigationBar';
 import Main from './Main';
 import Category from './Category';
-import {parse} from "./lib/yandex";
 
 class App extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            activePanel: 'Category',
+            activePanel: 'Main',
         };
 
         this.market = parse('/yandex.yml');
@@ -28,9 +27,15 @@ class App extends React.Component {
                     <NavigationBar/>
                 </UI.ScrollView>
                 <UI.ScrollView id='Category'>
-                    {self.market.categories.map(category =>
-                        <Category title={category.text}/>
-                    )}
+                    <Category />
+                    <NavigationBar/>
+                </UI.ScrollView>
+                <UI.ScrollView id='ItemInfo'>
+                    <ItemInfo />
+                    <NavigationBar/>
+                </UI.ScrollView>
+                <UI.ScrollView id='Cart'>
+                    <Cart />
                     <NavigationBar/>
                 </UI.ScrollView>
             </UI.View>

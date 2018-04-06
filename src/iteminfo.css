@@ -1,0 +1,117 @@
+.iteminfo-name {
+    margin-top: 5px;
+    color: black;
+    font-family: system-ui;
+    font-size: 17px;
+    overflow: hidden;
+    max-width: 96%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.iteminfo-price {
+    margin-top: 5px;
+    color: black;
+    font-family: system-ui;
+    font-size: 17px;
+    font-weight: 600;
+    overflow: hidden;
+    max-width: 96%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.iteminfo-description {
+    margin-top: 5px;
+    color: black;
+    font-family: system-ui;
+    font-size: 15px;
+    padding-top: 12px;
+}
+
+.iteminfo-container {
+    height: auto;
+    position: fixed;
+    background-color: white;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.iteminfo-info-container {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.iteminfo-info {
+    margin-top: 12px;
+    line-height: 1.3;
+    font-size: 13px;
+    color: #959698;
+}
+
+.iteminfo-option {
+    margin-top: 20px;
+    line-height: 1.3;
+    font-size: 14px;
+    color: #71757A;
+}
+
+.iteminfo-select-container {
+    margin-top: 7px;
+    border: 1px solid #E1E1E1;
+    border-radius: 7px;
+    background-color: #F4F4F4;
+    height: 35px;
+    width: auto;
+    position: relative;
+    display: block;
+    padding-left: 10px;
+}
+
+.iteminfo-select-container::after {
+    font: normal normal normal 14px/1 FontAwesome;
+    content: "\f107";
+    font-size: 24px;
+    padding-right: 10px;
+    text-align: right;
+    position: absolute;
+    right: 0;
+    top: 5px;
+    background-color: #F4F4F4;
+    text-rendering: optimizeLegibility;
+    color: #959698;
+}
+
+.iteminfo-select {
+    height: 35px;
+    font-size: 14px;
+    color: black;
+    font-family: system-ui;
+    width: 100%;
+    font-weight: 400;
+}
+
+.iteminfo-select-option {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.cart-button-container-item {
+    position: fixed;
+    bottom: 40px;
+    left: 0;
+    background-color: white;
+    width: 100%;
+}
+
+.cart-button-item {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 90%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
