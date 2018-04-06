@@ -4,8 +4,6 @@ import '@vkontakte/vkui/dist/vkui.css';
 import NavigationBar from './NavigationBar';
 import Main from './Main';
 import Category from './Category';
-import ItemInfo from './ItemInfo';
-import Cart from './Cart';
 
 class App extends React.Component {
 
@@ -18,6 +16,9 @@ class App extends React.Component {
         this.state = {
             activePanel: 'Main',
         };
+
+        this.market = parse('/yandex.yml');
+        console.log(this.market);
     }
 
     render() {
@@ -26,7 +27,7 @@ class App extends React.Component {
         return (
             <UI.View activePanel={self.state.activePanel}>
                 <UI.ScrollView id='Main'>
-                    <Main />
+                    <Main/>
                     <NavigationBar/>
                 </UI.ScrollView>
                 <UI.ScrollView id='Category'>

@@ -1,17 +1,18 @@
 import React from 'react';
 import * as UI from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
+import PropTypes from 'prop-types';
 import './category.css';
-
-import { colors } from '@vkontakte/vkui';
 
 class Category extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
+    static propTypes = {
+        title: PropTypes.string,
+    };
 
     render() {
+        let {title} = this.props;
+
         return (
             <UI.Group className='category'>
                 <UI.Header className='group-header' level='1'>
