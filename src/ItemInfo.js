@@ -3,6 +3,7 @@ import * as UI from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 import './iteminfo.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
+import PropTypes from "prop-types";
 
 class ItemInfo extends React.Component {
 

@@ -9,10 +9,10 @@
       <currency id="USD" rate="60"/>
     </currencies>
     <categories>
-      <category id="1">Бытовая техника</category>
-      <category id="10" parentId="1">Мелкая техника для кухни</category>
-      <category id="101" parentId="10">Сэндвичницы и приборы для выпечки</category>
-      <category id="102" parentId="10">Мороженицы</category>
+      <category id="1">Новинки</category>
+      <category id="10" parentId="1">Одежда</category>
+      <category id="101" parentId="10">Обувь</category>
+      <category id="102" parentId="10">Аксессуары</category>
     </categories>
     <delivery-options>
       <option cost="300" days="2" order-before="18"/>

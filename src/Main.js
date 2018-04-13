@@ -9,12 +9,33 @@ import { colors } from '@vkontakte/vkui';
 class Main extends React.Component {
 
     static propTypes = {
-        cities: PropTypes.array,
-        promo: PropTypes.array,
         categories: PropTypes.array,
     };
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            categoryIndex: null,
+        };
+
+        let categories = this.props.categories;
+        let categoryIndex = null;
+        for (let index in categories) {
+            if (categories.hasOwnProperty(index)) {
+                categories[index]['key'] = index;
+                if (categoryIndex === null || categoryIndex > index) {
+                    categoryIndex = index;
+                }
+            }
+        }
+
+        this.state.categoryIndex = categoryIndex;
+    }
+
     render() {
+        let categories = this.props.categories;
+        let self = this;
+
         return (
             <div className='main'>
                 <UI.Group>
@@ -124,18 +145,23 @@ class Main extends React.Component {
 
                 <UI.Pane>
                     <div className='categories-container'>
-                        <div className='category-main'>
-                            <div className='category-wrap'>
-                                <div className='category-text'>Новинки</div>
-                            </div>
-                        </div>
-                        <div className='category-main'>
-                            <div className='category-wrap'>
-                                <div className='category-text'>Одежда</div>
-                            </div>
-                        </div>
-                        <div className='category-main'><div className='category-wrap'><div className='category-text'>Обувь</div></div></div>
-                        <div className='category-main'><div className='category-wrap'><div className='category-text'>Аксессуары</div></div></div>
+                        {
+                            categories.map(function(itemData) {
+                                console.log(itemData.key);
+                                return (
+                                    <div className='category-main'
+                                         style={
+                                             {'background-color':
+                                                     itemData.key === self.state.categoryIndex ? '#F2F6FA' : 'white'}}
+                                        onClick={() => {setCategoryIndexself.state.categoryIndex = itemData.key;
+                                                console.log(self.state.categoryIndex)}}>
+                                        <div className='category-wrap' >
+                                            <div className='category-text'>{itemData.name}</div>
+                                        </div>
+                                    </div>
+                                );
+                            })
+                        }
                     </div>
                 </UI.Pane>
 
