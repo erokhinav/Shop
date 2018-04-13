@@ -1,8 +1,11 @@
 import React from 'react';
 import * as UI from '@vkontakte/vkui';
+import PropTypes from 'prop-types';
 import '@vkontakte/vkui/dist/vkui.css';
 import NavigationBar from './NavigationBar';
 import Main from './Main';
+import Cart from './Cart';
+import ItemInfo from './ItemInfo';
 import Category from './Category';
 import ItemInfo from './ItemInfo';
 import Cart from './Cart';
