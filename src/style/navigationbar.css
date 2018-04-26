@@ -37,6 +37,7 @@
 
 .header-pain {
     position: fixed;
+    z-index: 3;
     top: 0;
     width: 100%;
 }
@@ -67,7 +68,7 @@
 
 .header-pain .NewPane--android {
     padding-top: 12px;
-    height: 25px;
+    height: 18px;
 }
 
 .cart-button {
@@ -78,6 +79,7 @@
     color: #71757A;
     float: left;
     margin-right: 3px;
+    line-height: 1.4;
 }
 
 .cart-button-icon {

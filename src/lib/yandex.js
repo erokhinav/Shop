@@ -18,7 +18,7 @@ class Market {
 }
 
 class Offer {
-    constructor(id, url, price, oldprice, currencyId, categoryId, picture, store, pickup, delivery, deliveryOptions, typePrefix, vendor, model, description, param, salesNotes, manufacturerWarranty, countryOrigin, barcode, cpa) {
+    constructor(id, url, price, oldprice, currencyId, categoryId, picture, name, description, store, pickup, delivery, deliveryOptions, typePrefix, vendor, model, param, salesNotes, manufacturerWarranty, countryOrigin, barcode, cpa) {
         this.id = id;
         this.url = url;
         this.price = price;
@@ -26,6 +26,8 @@ class Offer {
         this.currencyId = currencyId;
         this.categoryId = categoryId;
         this.picture = picture;
+        this.name = name;
+        this.description = description;
         this.store = store;
         this.pickup = pickup;
         this.delivery = delivery;
@@ -33,7 +35,6 @@ class Offer {
         this.typePrefix = typePrefix;
         this.vendor = vendor;
         this.model = model;
-        this.description = description;
         this.param = param;
         this.typePrefix = typePrefix;
         this.salesNotes = salesNotes;
@@ -60,7 +61,7 @@ function loadYML(url) {
 
 export function parse(url) {
     let yml = loadYML(url);
-    console.log(yml);
+
     let shop = yml['yml_catalog']['shop'];
     return new Market(getTextValue(shop.name), getTextValue(shop.company), getTextValue(shop.url), parseCategories(shop.categories.category), parseOffers(shop.offers.offer));
 }
@@ -69,7 +70,7 @@ function parseOffers(offers) {
     let result = [];
     offers.forEach(function (element) {
         let attributes = getAttributes(element);
-        result[attributes.id] = new Offer(attributes.id, getTextValue(element.url), getTextValue(element.price), getTextValue(element.oldprice), getTextValue(element.currencyId), getTextValue(element.categoryId), getTextValue(element.picture));
+        result[attributes.id] = new Offer(attributes.id, getTextValue(element.url), getTextValue(element.price), getTextValue(element.oldprice), getTextValue(element.currencyId), getTextValue(element.categoryId), getTextValue(element.picture), getTextValue(element.name), getTextValue(element.description));
     });
 
     return result;
