@@ -307,7 +307,10 @@ class ConnectedMain extends React.Component {
                     <UI.Header className='group-header' level='1' aside={
                         <span className='all-items'
                               style={{ color: colors.accentBlue }}
-                              onClick={ () => {} }>
+                              onClick={ () => {
+                                  self.props.setCategory(self.state.categoryPopular);
+                                  self.props.setActivePanel('Category');
+                              } }>
                                 Показать все
                             </span>
                     }>
@@ -380,7 +383,7 @@ class ConnectedMain extends React.Component {
                                         </UI.ListItem>
                                         <UI.ListItem>
                                             <div onClick={() => {
-                                                self.props.setItemData(item2);
+                                                self.props.setItemData(itemData);
                                                 self.props.setActivePanel('ItemInfo')
                                             }}>
                                                 <img className='category-main-image' src={item2.picture}/>
