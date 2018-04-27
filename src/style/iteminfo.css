@@ -69,7 +69,7 @@
     width: auto;
     position: relative;
     display: block;
-    padding-left: 10px;
+    padding-left: 8px;
 }
 
 .iteminfo-select-container::after {

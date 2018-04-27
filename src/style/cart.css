@@ -22,6 +22,10 @@
     display: inline-block;
 }
 
+.cart {
+    padding-bottom: 44px;
+}
+
 .cart-item-name {
     color: #2C2D2D;
     font-family: system-ui;
@@ -129,4 +133,54 @@
     font: system-ui;
     font-weight: 400;
     font-size: 13px;
+}
+
+.cart-group-title {
+    font-size: 15px;
+    line-height: 18px;
+    color: #000;
+    font-weight: 600;
+}
+
+.cart-textarea {
+    border: 1px solid #E1E1E1;
+    background-color: #F4F4F4;
+    border-radius: 7px; /* Уголки */
+    resize: none;
+    height: 30px;
+    width: calc(100% - 12px);
+    margin-top: 7px;
+    line-height: 30px;
+    padding-left: 12px;
+    position: relative;
+    font-family: system-ui;
+    font-size: 14px;
+    color: black;
+}
+
+.checkbox {
+    display: inline-block;
+    background-color: white;
+    border-radius: 7px;
+}
+
+.checkbox-text-container {
+    height: 25px;
+    display: inline-block;
+}
+
+.checkbox-text {
+    margin-left: 10px;
+    font-size: 15px;
+    font-family: system-ui;
+    color: #2c2d2e;
+}
+
+.checkbox-container {
+    margin-top: 20px;
+    height: 25px;
+}
+
+.checkbox-wrapper {
+    margin-top: 10px;
 }
