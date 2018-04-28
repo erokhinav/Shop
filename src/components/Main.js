@@ -4,7 +4,8 @@ import '@vkontakte/vkui/dist/vkui.css';
 import '../style/main.css';
 import PropTypes from "prop-types";
 import { colors } from '@vkontakte/vkui';
-import {setActivePanel, setItemData, setCategory, setCategoryIndex, addToCart} from "../redux/actions";
+import {setActivePanel, setItemData, setCategory, setCategoryIndex,
+    addToCart, viewForward, goForward, goBack} from "../redux/actions";
 import {connect} from "react-redux";
 
 const mapStateToProps = state => {
@@ -14,6 +15,8 @@ const mapStateToProps = state => {
         itemData: state.itemData,
         categoryIndex: state.categoryIndex,
         category: state.category,
+        panelBack: state.panelBack,
+        panelForward: state.panelForward,
     };
 };
 
@@ -24,6 +27,9 @@ const mapDispatchToProps = dispatch => {
         setCategoryIndex: index => dispatch(setCategoryIndex(index)),
         setCategory: category => dispatch(setCategory(category)),
         addToCart: item => dispatch(addToCart(item)),
+        viewForward: newView => dispatch(viewForward(newView)),
+        goForward: view => dispatch(goForward(view)),
+        goBack: view => dispatch(goBack(view)),
     };
 };
 
@@ -56,6 +62,9 @@ class ConnectedMain extends React.Component {
         // }
         //
         // this.state.categoryIndex = categoryIndex;
+
+        this.navigationListener = this.props.parent.navigationListener.bind(this);
+        this.props.connect.subscribe(this.navigationListener);
     }
 
     static shuffle(array) {
@@ -84,8 +93,15 @@ class ConnectedMain extends React.Component {
         return newArray;
     }
 
-    componentDidUpdate() {
-        console.log('yes');
+    viewForward(panelName) {
+        this.props.viewForward(panelName);
+        this.props.connect.send('VKWebAppViewUpdateNavigationState', {canBack: true, canForward: false});
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.activePanel !== this.props.activePanel) {
+            this.props.connect.unsubscribe(this.navigationListener);
+        }
     }
 
     render() {
@@ -185,7 +201,8 @@ class ConnectedMain extends React.Component {
                               style={{ color: colors.accentBlue }}
                               onClick={ () => {
                                   self.props.setCategory(popular);
-                                  self.props.setActivePanel('Category');
+                                  // self.props.setActivePanel('Category');
+                                  self.viewForward('Category');
                               } }>
                                 Показать все
                             </span>
@@ -201,7 +218,8 @@ class ConnectedMain extends React.Component {
                                 return (
                                     <div className='gallery-container' onClick={() => {
                                         self.props.setItemData(itemData);
-                                        self.props.setActivePanel('ItemInfo')
+                                        // self.props.setActivePanel('ItemInfo')
+                                        self.viewForward('ItemInfo');
                                     }}>
                                         <img className='popular-image'
                                              src={itemData.picture}/>
@@ -268,7 +286,10 @@ class ConnectedMain extends React.Component {
                     <UI.Header className='group-header' level='1' aside={
                         <span className='all-items'
                               style={{ color: colors.accentBlue }}
-                              onClick={ () => {self.props.setActivePanel('Category')} }>
+                              onClick={ () => {
+                                  // self.props.setActivePanel('Category')
+                                  self.viewForward('Category');
+                              }}>
                                 Показать все
                             </span>
                     }>
@@ -284,7 +305,9 @@ class ConnectedMain extends React.Component {
                                 return (
                                     <UI.ListItem onClick={() => {
                                         self.props.setItemData(itemData);
-                                        self.props.setActivePanel('ItemInfo')}}>
+                                        // self.props.setActivePanel('ItemInfo')
+                                        self.viewForward('ItemInfo');
+                                    }}>
                                         <div>
                                             <img className='category-main-image' src={itemData.picture}/>
                                             <div className='category-main-info'>
@@ -309,7 +332,8 @@ class ConnectedMain extends React.Component {
                               style={{ color: colors.accentBlue }}
                               onClick={ () => {
                                   self.props.setCategory(self.state.categoryPopular);
-                                  self.props.setActivePanel('Category');
+                                  // self.props.setActivePanel('Category');
+                                  self.viewForward('Category');
                               } }>
                                 Показать все
                             </span>
@@ -325,7 +349,8 @@ class ConnectedMain extends React.Component {
                                 return (
                                     <div className='gallery-container' onClick={() => {
                                         self.props.setItemData(itemData);
-                                        self.props.setActivePanel('ItemInfo')
+                                        // self.props.setActivePanel('ItemInfo')
+                                        self.viewForward('ItemInfo');
                                     }}>
                                         <img className='category-popular-image' src={itemData.picture}/>
                                         <div className='gallery-item-name'>{itemData.name}</div>
@@ -349,7 +374,11 @@ class ConnectedMain extends React.Component {
                     <UI.Header className='group-header' level='1' aside={
                         <span className='all-items'
                               style={{ color: colors.accentBlue }}
-                              onClick={ () => {} }>
+                              onClick={ () => {
+                                  self.props.setCategory(self.state.categoryForyou);
+                                  // self.props.setActivePanel('Category');
+                                  self.viewForward('Category');
+                              } }>
                                 Показать все
                             </span>
                     }>
@@ -368,7 +397,8 @@ class ConnectedMain extends React.Component {
                                         <UI.ListItem>
                                             <div onClick={() => {
                                                 self.props.setItemData(item1);
-                                                self.props.setActivePanel('ItemInfo')
+                                                // self.props.setActivePanel('ItemInfo')
+                                                self.viewForward('ItemInfo');
                                             }}>
                                                 <img className='category-main-image' src={item1.picture}/>
                                                 <div className='category-main-info'>
@@ -384,7 +414,8 @@ class ConnectedMain extends React.Component {
                                         <UI.ListItem>
                                             <div onClick={() => {
                                                 self.props.setItemData(itemData);
-                                                self.props.setActivePanel('ItemInfo')
+                                                // self.props.setActivePanel('ItemInfo')
+                                                self.viewForward('ItemInfo');
                                             }}>
                                                 <img className='category-main-image' src={item2.picture}/>
                                                 <div className='category-main-info'>
@@ -407,7 +438,12 @@ class ConnectedMain extends React.Component {
                     <UI.Header className='group-header' level='1' aside={
                         <span className='all-items'
                               style={{ color: colors.accentBlue }}
-                              onClick={ () => {self.props.setActivePanel('Category')} }>
+                              onClick={ () => {
+                                  self.props.setCategory(self.state.categorySpecial);
+                                  // self.props.setActivePanel('Category');
+                                  self.viewForward('Category');
+                              }
+                              }>
                                 Показать все
                             </span>
                     }>
@@ -423,7 +459,8 @@ class ConnectedMain extends React.Component {
                                 return (
                                     <UI.ListItem onClick={() => {
                                         self.props.setItemData(itemData);
-                                        self.props.setActivePanel('ItemInfo')
+                                        // self.props.setActivePanel('ItemInfo')
+                                        self.viewForward('ItemInfo');
                                     }}>
                                         <div>
                                             <img className='category-main-image' src={itemData.picture}/>

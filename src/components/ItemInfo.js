@@ -3,7 +3,7 @@ import * as UI from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 import '../style/iteminfo.css';
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
-import {setActivePanel, addToCart} from "../redux/actions";
+import {setActivePanel, addToCart, goBack, goForward} from "../redux/actions";
 import {connect} from "react-redux";
 import {colors} from "@vkontakte/vkui/dist/vkui";
 
@@ -12,6 +12,8 @@ const mapStateToProps = state => {
     return {
         activePanel: state.activePanel,
         itemData: state.itemData,
+        panelBack: state.panelBack,
+        panelForward: state.panelForward,
     };
 };
 
@@ -19,10 +21,25 @@ const mapDispatchToProps = dispatch => {
     return {
         setActivePanel: panel => dispatch(setActivePanel(panel)),
         addToCart: item => dispatch(addToCart(item)),
+        goForward: view => dispatch(goForward(view)),
+        goBack: view => dispatch(goBack(view)),
     };
 };
 
 class ConnectedItemInfo extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.navigationListener = this.props.parent.navigationListener.bind(this);
+        this.props.connect.subscribe(this.navigationListener);
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.activePanel !== this.props.activePanel) {
+            this.props.connect.unsubscribe(this.navigationListener);
+        }
+    }
+
     render() {
         let itemData = this.props.itemData;
 
@@ -61,18 +78,28 @@ class ConnectedItemInfo extends React.Component {
                     </div>
 
                     <div className='iteminfo-option'>Размер</div>
-                    <div className='iteminfo-select-container'>
-                        <select className='iteminfo-select'>
-                            <option className='iteminfo-select-option'>US 8 (RU 40)</option>
-                        </select>
-                    </div>
+                    <UI.FormLayout v="new">
+                        <UI.Select>
+                            <option>US 8 (RU 40)</option>
+                        </UI.Select>
+                    </UI.FormLayout>
+                    {/*<div className='iteminfo-select-container'>*/}
+                        {/*<select className='iteminfo-select'>*/}
+                            {/*<option className='iteminfo-select-option'>US 8 (RU 40)</option>*/}
+                        {/*</select>*/}
+                    {/*</div>*/}
 
                     <div className='iteminfo-option'>Количество</div>
-                    <div className='iteminfo-select-container'>
-                        <select className='iteminfo-select'>
-                            <option className='iteminfo-select-option'>2 пары</option>
-                        </select>
-                    </div>
+                    <UI.FormLayout v="new">
+                        <UI.Select>
+                            <option>2 пары</option>
+                        </UI.Select>
+                    </UI.FormLayout>
+                    {/*<div className='iteminfo-select-container'>*/}
+                        {/*<select className='iteminfo-select'>*/}
+                            {/*<option className='iteminfo-select-option'>2 пары</option>*/}
+                        {/*</select>*/}
+                    {/*</div>*/}
                 </div>
 
                 <div id='cart-button-item' className='cart-button-container-item'>

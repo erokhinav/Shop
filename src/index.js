@@ -9,8 +9,8 @@ const connect = require('vkui-connect');
 connect.send('VKWebAppInit');
 
 ReactDOM.render(
-    <Provider store={store} connect={connect}>
-        <App />
+    <Provider store={store}>
+        <App connect={connect}/>
     </Provider>,
     document.getElementById('root')
 );

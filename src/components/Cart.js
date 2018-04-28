@@ -2,7 +2,7 @@ import React from 'react';
 import * as UI from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 import '../style/cart.css';
-import {setActivePanel, setCategory, setItemData} from '../redux/actions';
+import {goBack, goForward, setActivePanel, setCategory, setItemData} from '../redux/actions';
 import {connect} from 'react-redux';
 import {parse} from '../lib/yandex';
 
@@ -11,6 +11,8 @@ const mapStateToProps = state => {
         itemData: state.itemData,
         category: state.category,
         cart: state.cart,
+        panelBack: state.panelBack,
+        panelForward: state.panelForward,
     };
 };
 
@@ -18,6 +20,8 @@ const mapDispatchToProps = dispatch => {
     return {
         setActivePanel: panel => dispatch(setActivePanel(panel)),
         setItemData: data => dispatch(setItemData(data)),
+        goForward: view => dispatch(goForward(view)),
+        goBack: view => dispatch(goBack(view)),
     };
 };
 
@@ -40,6 +44,15 @@ class ConnectedCart extends React.Component {
 
         this.state.sum = sum;
         this.state.currency = currency;
+
+        this.navigationListener = this.props.parent.navigationListener.bind(this);
+        this.props.connect.subscribe(this.navigationListener);
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.activePanel !== this.props.activePanel) {
+            this.props.connect.unsubscribe(this.navigationListener);
+        }
     }
 
     openNotifyDialog() {
@@ -135,31 +148,44 @@ class ConnectedCart extends React.Component {
                     <UI.Pane>
                         <div className='cart-group-title'>Оформление заказа</div>
                         <div className='iteminfo-option'>Имя и фамилия</div>
-                        <textarea className='cart-textarea'/>
+                        <UI.FormLayout v="new">
+                            <UI.Input />
+                        </UI.FormLayout>
                         <div className='iteminfo-option'>Мобильный телефон</div>
-                        <textarea className='cart-textarea'/>
+                        <UI.FormLayout v="new">
+                            <UI.Input />
+                        </UI.FormLayout>
                     </UI.Pane>
                     <UI.Pane>
                         <div className='cart-group-title'>Доставка</div>
                         <div className='iteminfo-option'>Способ доставки</div>
-                        <div className='iteminfo-select-container'>
-                            <select className='iteminfo-select'>
-                                <option className='iteminfo-select-option'>Экспресс-доставка</option>
-                            </select>
-                        </div>
+                        {/*<div className='iteminfo-select-container'>*/}
+                            {/*<select className='iteminfo-select'>*/}
+                                {/*<option className='iteminfo-select-option'>Экспресс-доставка</option>*/}
+                            {/*</select>*/}
+                        {/*</div>*/}
+                        <UI.FormLayout v="new">
+                            <UI.Select>
+                                <option>Экспресс-доставка</option>
+                            </UI.Select>
+                        </UI.FormLayout>
                         <div className='iteminfo-option'>Адрес доставки</div>
-                        <textarea className='cart-textarea'/>
+                        <UI.FormLayout v="new">
+                            <UI.Input />
+                        </UI.FormLayout>
                         <div className='iteminfo-option'>Почтовый индекс</div>
-                        <textarea className='cart-textarea'/>
+                        <UI.FormLayout v="new">
+                            <UI.Input />
+                        </UI.FormLayout>
                     </UI.Pane>
                     <UI.Pane>
                         <div className='cart-group-title'>Оплата</div>
                         <div className='iteminfo-option'>Способ оплаты</div>
-                        <div className='iteminfo-select-container'>
-                            <select className='iteminfo-select'>
-                                <option className='iteminfo-select-option'>VK Pay</option>
-                            </select>
-                        </div>
+                        <UI.FormLayout v="new">
+                            <UI.Select>
+                                <option>VK Pay</option>
+                            </UI.Select>
+                        </UI.FormLayout>
                         {/*<div className='checkbox-container'>*/}
                             {/*<input type='checkbox' className='checkbox' checked='checked' />*/}
                             {/*<div className='checkbox-text'>У меня есть промокод на скидку</div>*/}

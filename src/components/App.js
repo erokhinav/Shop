@@ -16,6 +16,8 @@ const mapStateToProps = state => {
         activePanel: state.activePanel,
         categoryIndex: state.categoryIndex,
         category: state.category,
+        panelBack: state.panelBack,
+        panelForward: state.panelForward,
     };
 };
 
@@ -76,26 +78,51 @@ class ConnectedApp extends React.Component {
         return result;
     }
 
+    navigationListener(e) {
+        let connect = this.props.connect;
+        e = e.detail;
+        if (e['type'] === 'VKWebAppGoBack') {
+            this.props.goBack(this.props.activePanel);
+            let canBack = false;
+            if (this.props.panelBack.length > 0) {
+                canBack = true;
+            }
+            connect.send('VKWebAppViewUpdateNavigationState', {canBack: canBack, canForward: true});
+
+        } else if (e['type'] === 'VKWebAppGoForward') {
+            this.props.goForward(this.props.activePanel);
+            let canForward = false;
+            if (this.props.panelForward.length > 0) {
+                canForward = true;
+            }
+            connect.send('VKWebAppViewUpdateNavigationState', {canBack: true, canForward: canForward});
+        }
+    }
+
     render() {
         let self = this;
 
         return (
             <UI.View popout={self.state.popout} activePanel={self.props.activePanel}>
                 <UI.ScrollView id='Main'>
-                    <NavigationBar/>
-                    <Main categories={self.market.categories} mainCategories={self.mainCategories} offers={this.market.offers}/>
+                    <NavigationBar connect={self.props.connect}/>
+                    <Main categories={self.market.categories}
+                          mainCategories={self.mainCategories}
+                          offers={this.market.offers}
+                          connect={self.props.connect}
+                          parent={self}/>
                 </UI.ScrollView>
                 <UI.ScrollView id='Category'>
-                    <NavigationBar/>
-                    <Category />
+                    <NavigationBar connect={self.props.connect}/>
+                    <Category connect={self.props.connect} parent={self}/>
                 </UI.ScrollView>
                 <UI.ScrollView id='ItemInfo'>
-                    <NavigationBar/>
-                    <ItemInfo />
+                    <NavigationBar connect={self.props.connect}/>
+                    <ItemInfo connect={self.props.connect} parent={self}/>
                 </UI.ScrollView>
                 <UI.ScrollView id='Cart'>
-                    <NavigationBar/>
-                    <Cart parent={self}/>
+                    <NavigationBar connect={self.props.connect}/>
+                    <Cart parent={self} connect={self.props.connect}/>
                 </UI.ScrollView>
             </UI.View>
         );

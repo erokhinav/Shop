@@ -3,13 +3,15 @@ import * as UI from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 import PropTypes from 'prop-types';
 import '../style/category.css';
-import {setActivePanel, setCategory, setItemData} from "../redux/actions";
+import {goBack, goForward, setActivePanel, setCategory, setItemData} from "../redux/actions";
 import {connect} from "react-redux";
 
 const mapStateToProps = state => {
     return {
         itemData: state.itemData,
         category: state.category,
+        panelBack: state.panelBack,
+        panelForward: state.panelForward,
     };
 };
 
@@ -17,10 +19,24 @@ const mapDispatchToProps = dispatch => {
     return {
         setActivePanel: panel => dispatch(setActivePanel(panel)),
         setItemData: data => dispatch(setItemData(data)),
+        goForward: view => dispatch(goForward(view)),
+        goBack: view => dispatch(goBack(view)),
     };
 };
 
 class ConnectedCategory extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.navigationListener = this.props.parent.navigationListener.bind(this);
+        this.props.connect.subscribe(this.navigationListener);
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.activePanel !== this.props.activePanel) {
+            this.props.connect.unsubscribe(this.navigationListener);
+        }
+    }
 
     render() {
         let title = this.props.category.name;

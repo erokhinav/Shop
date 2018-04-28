@@ -7,17 +7,25 @@ import IconChevron_back28 from '@vkontakte/vkui/dist/icons/28/chevron_back';
 import IconReply_outline24 from '@vkontakte/vkui/dist/icons/24/reply_outline';
 import Icon24Market from '@vkontakte/vkui/dist/icons/24/market';
 import {connect} from "react-redux";
-import {setActivePanel, setCategory, setCategoryIndex, setItemData} from "../redux/actions";
+import {
+    goBack, goForward, setActivePanel, setCategory, setCategoryIndex, setItemData,
+    viewForward
+} from "../redux/actions";
 
 const mapStateToProps = state => {
     return {
         cart: state.cart,
+        panelBack: state.panelBack,
+        panelForward: state.panelForward,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         setActivePanel: panel => dispatch(setActivePanel(panel)),
+        viewForward: newView => dispatch(viewForward(newView)),
+        goForward: view => dispatch(goForward(view)),
+        goBack: view => dispatch(goBack(view)),
     };
 };
 
@@ -29,6 +37,8 @@ class ConnectedNavigationBar extends React.Component {
 
     render() {
         let cart = this.props.cart;
+        let self = this;
+        let connect = this.props.connect;
 
         return (
             <div>
@@ -39,7 +49,17 @@ class ConnectedNavigationBar extends React.Component {
                                 <option>Москва</option>
                             </select>
                         </div>
-                        <div className='cart-button' onClick={() => {this.props.setActivePanel('Cart')}}>
+                        {/*<UI.FormLayout v="new">*/}
+                            {/*<UI.Select>*/}
+                                {/*<option>Экспресс-доставка</option>*/}
+                            {/*</UI.Select>*/}
+                        {/*</UI.FormLayout>*/}
+                        <div className='cart-button' onClick={() => {
+                            // this.props.setActivePanel('Cart')
+                            self.props.viewForward('Cart');
+                            connect.send('VKWebAppViewUpdateNavigationState', {canBack: true, canForward: false});
+                        }
+                        }>
                             <div className='cart-button-text'>{cart.length} товаров</div>
                             <Icon24Market fill={colors.captionGray} className='cart-button-icon'/>
                         </div>
