@@ -24,6 +24,7 @@
 
 .cart {
     padding-bottom: 44px;
+    overflow-x: hidden;
 }
 
 .cart-item-name {
@@ -84,6 +85,7 @@
     width: fit-content;
     position: relative;
     margin-right: 6px;
+    width: 98px;
 }
 
 .cart-select-container::after {
@@ -186,7 +188,24 @@
 }
 
 .cart .FormLayoutNew--ios {
+     padding-top: 10px;
+     padding-left: 0px;
+     padding-right: 0px;
+}
+
+.cart .FormLayoutNew--android {
     padding-top: 10px;
     padding-left: 0px;
     padding-right: 0px;
+}
+
+.hint {
+    background-color: #EBEDF0;
+    width: 100%;
+    text-align: center;
+    padding-top: 60%;
+    font-family: system-ui;
+    color: #71757a;
+    font-size: 18px;
+    line-height: 1.5;
 }

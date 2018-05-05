@@ -21,8 +21,8 @@ const mapDispatchToProps = dispatch => {
     return {
         setActivePanel: panel => dispatch(setActivePanel(panel)),
         addToCart: item => dispatch(addToCart(item)),
-        goForward: view => dispatch(goForward(view)),
-        goBack: view => dispatch(goBack(view)),
+        goForward: () => dispatch(goForward()),
+        goBack: () => dispatch(goBack()),
     };
 };
 
@@ -52,21 +52,22 @@ class ConnectedItemInfo extends React.Component {
                                 <img className='iteminfo-gallery'
                                      src={itemData.picture}/>
                             }
-                            {
-                                <img className='iteminfo-gallery'
-                                     src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>
-                            }
                             {/*{*/}
                                 {/*<img className='iteminfo-gallery'*/}
                                      {/*src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>*/}
                             {/*}*/}
+                            {
+                                <img className='iteminfo-gallery'
+                                     src={itemData.picture}/>
+                            }
                         </UI.Gallery>
                     </UI.Group>
 
                     {/*<div className='iteminfo-name'>Nike Free X Metcon</div>*/}
                     {/*<div className='iteminfo-price'>8 840 руб.</div>*/}
                     {/*<div className='iteminfo-description'>Мужские кроссовки для тренинга Nike Free X Metcon - это сочетание гибкости и легкости в каждом движении.</div>*/}
-                    <div className='iteminfo-name'>{itemData.name}</div>
+                    <div className='iteminfo-name'>{itemData.name === null ?
+                        itemData.model : itemData.name}</div>
                     <div className='iteminfo-price'>{itemData.price} {itemData.currencyId}</div>
                     <div className='iteminfo-description'>{itemData.description}</div>
 

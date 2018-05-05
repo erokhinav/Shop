@@ -7,6 +7,13 @@ import store from "./redux/store";
 
 const connect = require('vkui-connect');
 connect.send('VKWebAppInit');
+connect.send('VKWebAppGetAuthToken', {"app_id": 6458026, "scope": "video"});
+
+connect.subscribe(function(e) {
+    e = e.detail;
+    console.log('HERE:');
+    console.log(e);
+});
 
 ReactDOM.render(
     <Provider store={store}>

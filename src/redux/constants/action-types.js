@@ -6,3 +6,6 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const GO_BACK = "GO_BACK";
 export const GO_FORWARD = "GO_FORWARD";
 export const VIEW_FORWARD = "VIEW_FORWARD";
+export const SET_PHONE_NUMBER = "SET_PHONE_NUMBER";
+export const SET_NAME = "SET_NAME";
+export const SET_ADDRESS = "SET_ADDRESS";

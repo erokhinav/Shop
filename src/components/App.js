@@ -10,6 +10,7 @@ import PropTypes from "prop-types";
 import { parse } from '../lib/yandex';
 import { connect } from "react-redux";
 import {setCategory, setCategoryIndex} from "../redux/actions";
+import store from "../redux/store";
 
 const mapStateToProps = state => {
     return {
@@ -36,7 +37,7 @@ class ConnectedApp extends React.Component {
             popout: null,
         };
 
-        this.market = parse('/yandex.yml');
+        this.market = parse('/shop/yandex.yml');
         console.log(this.market);
 
         this.mainCategories = this.formatMainCategories(this.market);
@@ -80,9 +81,14 @@ class ConnectedApp extends React.Component {
 
     navigationListener(e) {
         let connect = this.props.connect;
+        console.log('active panel: ' + this.props.activePanel);
+        console.log(e);
+        console.log(this);
         e = e.detail;
         if (e['type'] === 'VKWebAppGoBack') {
-            this.props.goBack(this.props.activePanel);
+            console.log('!');
+            console.log(store.getState());
+            this.props.goBack();
             let canBack = false;
             if (this.props.panelBack.length > 0) {
                 canBack = true;
@@ -90,7 +96,9 @@ class ConnectedApp extends React.Component {
             connect.send('VKWebAppViewUpdateNavigationState', {canBack: canBack, canForward: true});
 
         } else if (e['type'] === 'VKWebAppGoForward') {
-            this.props.goForward(this.props.activePanel);
+            console.log('!!');
+            console.log(store.getState());
+            this.props.goForward();
             let canForward = false;
             if (this.props.panelForward.length > 0) {
                 canForward = true;

@@ -18,7 +18,7 @@ class Market {
 }
 
 class Offer {
-    constructor(id, url, price, oldprice, currencyId, categoryId, picture, name, description, store, pickup, delivery, deliveryOptions, typePrefix, vendor, model, param, salesNotes, manufacturerWarranty, countryOrigin, barcode, cpa) {
+    constructor(id, url, price, oldprice, currencyId, categoryId, picture, name, description, model, store, pickup, delivery, deliveryOptions, typePrefix, vendor, param, salesNotes, manufacturerWarranty, countryOrigin, barcode, cpa) {
         this.id = id;
         this.url = url;
         this.price = price;
@@ -28,13 +28,13 @@ class Offer {
         this.picture = picture;
         this.name = name;
         this.description = description;
+        this.model = model;
         this.store = store;
         this.pickup = pickup;
         this.delivery = delivery;
         this.deliveryOption = deliveryOptions;
         this.typePrefix = typePrefix;
         this.vendor = vendor;
-        this.model = model;
         this.param = param;
         this.typePrefix = typePrefix;
         this.salesNotes = salesNotes;
@@ -70,7 +70,10 @@ function parseOffers(offers) {
     let result = [];
     offers.forEach(function (element) {
         let attributes = getAttributes(element);
-        result[attributes.id] = new Offer(attributes.id, getTextValue(element.url), getTextValue(element.price), getTextValue(element.oldprice), getTextValue(element.currencyId), getTextValue(element.categoryId), getTextValue(element.picture), getTextValue(element.name), getTextValue(element.description));
+        result[attributes.id] = new Offer(attributes.id, getTextValue(element.url), getTextValue(element.price),
+            getTextValue(element.oldprice), getTextValue(element.currencyId), getTextValue(element.categoryId),
+            getTextValue(element.picture), getTextValue(element.name), getTextValue(element.description),
+            getTextValue(element.model));
     });
 
     return result;

@@ -9,7 +9,7 @@ import {setActivePanel, setItemData, setCategory, setCategoryIndex,
 import {connect} from "react-redux";
 
 const mapStateToProps = state => {
-    console.log(state);
+    // console.log(state);
     return {
         activePanel: state.activePanel,
         itemData: state.itemData,
@@ -28,8 +28,8 @@ const mapDispatchToProps = dispatch => {
         setCategory: category => dispatch(setCategory(category)),
         addToCart: item => dispatch(addToCart(item)),
         viewForward: newView => dispatch(viewForward(newView)),
-        goForward: view => dispatch(goForward(view)),
-        goBack: view => dispatch(goBack(view)),
+        goForward: () => dispatch(goForward()),
+        goBack: () => dispatch(goBack()),
     };
 };
 
@@ -39,16 +39,19 @@ class ConnectedMain extends React.Component {
         super(props);
 
         this.state = {
-            categoryPopular: [],
-            categoryForyou: [],
-            categorySpecial: [],
+            categoryPopular: {},
+            categoryForyou: {},
+            categorySpecial: {},
         };
 
         let category = this.props.mainCategories[this.props.categoryIndex];
-        this.state.categoryPopular = ConnectedMain.shuffle(category.offers.slice()).slice(0, 10);
-        this.state.categoryForyou = ConnectedMain.formatForyou(ConnectedMain.shuffle(category.offers.slice()).slice(0, 10));
-        this.state.categorySpecial = ConnectedMain.shuffle(category.offers.slice()).slice(0, 3);
-
+        this.state.categoryPopular.offers = ConnectedMain.shuffle(category.offers.slice()).slice(0, 10);
+        this.state.categoryForyou.offers = ConnectedMain.shuffle(category.offers.slice()).slice(0, 10);
+        this.state.categoryForyou.formatted = ConnectedMain.formatForyou(this.state.categoryForyou.offers);
+        this.state.categorySpecial.offers = ConnectedMain.shuffle(category.offers.slice()).slice(0, 3);
+        this.state.categoryPopular.name = 'Популярное';
+        this.state.categoryForyou.name = 'Подобрано для вас';
+        this.state.categorySpecial.name = 'Специальное предложение';
         //
         // let categories = this.props.categories;
         // let categoryIndex = null;
@@ -63,6 +66,7 @@ class ConnectedMain extends React.Component {
         //
         // this.state.categoryIndex = categoryIndex;
 
+        console.log('HEY');
         this.navigationListener = this.props.parent.navigationListener.bind(this);
         this.props.connect.subscribe(this.navigationListener);
     }
@@ -99,7 +103,9 @@ class ConnectedMain extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
+        console.log(prevProps.activePanel + ' ' + this.props.activePanel);
         if (prevProps.activePanel !== this.props.activePanel) {
+            console.log('YES!!');
             this.props.connect.unsubscribe(this.navigationListener);
         }
     }
@@ -139,8 +145,10 @@ class ConnectedMain extends React.Component {
                     <UI.Gallery slideWidth='300px' style={{ height: 205 }} className='gallery-wrap'>
                     {
                         <div className='gallery-container'>
-                            <img className='foryou-image'
-                                 src="https://pp.userapi.com/c847216/v847216002/30757/glikqebLHPg.jpg"/>
+                            {/*<div className='image-container'>*/}
+                                <img className='foryou-image'
+                                    src="https://pp.userapi.com/c847216/v847216002/30757/glikqebLHPg.jpg"/>
+                            {/*</div>*/}
                             <div className='gallery-item-name'>Штанги из Германии</div>
                             <div className='gallery-item-description'>Удобство и комфорт в новом исполнении</div>
                         </div>
@@ -223,7 +231,8 @@ class ConnectedMain extends React.Component {
                                     }}>
                                         <img className='popular-image'
                                              src={itemData.picture}/>
-                                        <div className='popular-name'>{itemData.name}</div>
+                                        <div className='popular-name'>{itemData.name === null ?
+                                            itemData.model : itemData.name}</div>
                                         <div className='popular-description'>{itemData.description}</div>
                                     </div>
                                 );
@@ -262,7 +271,7 @@ class ConnectedMain extends React.Component {
                     <div className='categories-container'>
                         {
                             mainCategories.map(function(itemData) {
-                                {console.log(itemData)}
+                                // {console.log(itemData)}
                                 return (
                                     <div className='category-main'
                                          style={
@@ -273,7 +282,8 @@ class ConnectedMain extends React.Component {
                                             self.props.setCategory(mainCategories[self.props.categoryIndex])
                                         }}>
                                         <div className='category-wrap' >
-                                            <div className='category-text'>{itemData.name}</div>
+                                            <div className='category-text'>{itemData.name === null ?
+                                                itemData.model : itemData.name}</div>
                                         </div>
                                     </div>
                                 );
@@ -301,7 +311,7 @@ class ConnectedMain extends React.Component {
                     <UI.List>
                         {
                             mainCategories[self.props.categoryIndex].offers.slice(0, 4).map(function(itemData) {
-                                console.log(mainCategories[self.props.categoryIndex].offers);
+                                // console.log(mainCategories[self.props.categoryIndex].offers);
                                 return (
                                     <UI.ListItem onClick={() => {
                                         self.props.setItemData(itemData);
@@ -311,11 +321,13 @@ class ConnectedMain extends React.Component {
                                         <div>
                                             <img className='category-main-image' src={itemData.picture}/>
                                             <div className='category-main-info'>
-                                                <div className='category-main-name'>{itemData.name}</div>
+                                                <div className='category-main-name'>{itemData.name === null ?
+                                                    itemData.model : itemData.name}</div>
                                                 <div className='category-main-description'>{mainCategories[self.props.categoryIndex].name}</div>
                                                 <div className='category-main-price'>
                                                     <div className='category-main-price-current'>{itemData.price} {itemData.currencyId}</div>
-                                                    <div className='category-main-price-old'>{itemData.price} {itemData.currencyId}</div>
+                                                    <div className='category-main-price-old'>{itemData.oldprice === null ?
+                                                        itemData.price : itemData.oldprice} {itemData.currencyId}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -339,13 +351,13 @@ class ConnectedMain extends React.Component {
                             </span>
                     }>
                         <div className='group-title font'>
-                            Популярное
+                            {self.state.categoryPopular.name}
                         </div>
                     </UI.Header>
 
                     <UI.Gallery slideWidth='158px' style={{ height: 205 }} className='gallery-wrap'>
                         {
-                            self.state.categoryPopular.map(function(itemData) {
+                            self.state.categoryPopular.offers.map(function(itemData) {
                                 return (
                                     <div className='gallery-container' onClick={() => {
                                         self.props.setItemData(itemData);
@@ -353,7 +365,8 @@ class ConnectedMain extends React.Component {
                                         self.viewForward('ItemInfo');
                                     }}>
                                         <img className='category-popular-image' src={itemData.picture}/>
-                                        <div className='gallery-item-name'>{itemData.name}</div>
+                                        <div className='gallery-item-name'>{itemData.name === null ?
+                                            itemData.model : itemData.name}</div>
                                         <div className='gallery-item-description'>{itemData.description}</div>
                                     </div>
                                 );
@@ -383,13 +396,13 @@ class ConnectedMain extends React.Component {
                             </span>
                     }>
                         <div className='group-title font'>
-                            Подобрано для вас
+                            {self.state.categoryForyou.name}
                         </div>
                     </UI.Header>
 
                     <UI.Gallery slideWidth='330px' style={{ height: 220 }} className='gallery-wrap'>
                         {
-                            self.state.categoryForyou.map(function(itemData) {
+                            self.state.categoryForyou.formatted.map(function(itemData) {
                                 let item1 = itemData[0];
                                 let item2 = itemData[1];
                                 return (
@@ -406,7 +419,8 @@ class ConnectedMain extends React.Component {
                                                     <div className='category-main-description'>{categories[item1.categoryId].text}</div>
                                                     <div className='category-main-price'>
                                                         <div className='category-main-price-current'>{item1.price} {item1.currencyId}</div>
-                                                        <div className='category-main-price-old'>{item1.price} {item1.currencyId}</div>
+                                                        <div className='category-main-price-old'>{item1.oldprice === null ?
+                                                            item1.price : item1.oldprice} {item1.currencyId}</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -448,14 +462,14 @@ class ConnectedMain extends React.Component {
                             </span>
                     }>
                         <div className='group-title font'>
-                            Специальное предложение
+                            {self.state.categorySpecial.name}
                         </div>
                     </UI.Header>
 
                     <UI.List>
                         {
-                            self.state.categorySpecial.map(function(itemData) {
-                                console.log(mainCategories[self.props.categoryIndex].offers);
+                            self.state.categorySpecial.offers.map(function(itemData) {
+                                // console.log(mainCategories[self.props.categoryIndex].offers);
                                 return (
                                     <UI.ListItem onClick={() => {
                                         self.props.setItemData(itemData);
@@ -465,10 +479,12 @@ class ConnectedMain extends React.Component {
                                         <div>
                                             <img className='category-main-image' src={itemData.picture}/>
                                             <div className='category-main-info'>
-                                                <div className='category-special-name'>{itemData.name}</div>
+                                                <div className='category-special-name'>{itemData.name === null ?
+                                                    itemData.model : itemData.name}</div>
                                                 <div className='category-special-price'>
                                                     <div className='category-main-price-current'>{itemData.price} {itemData.currencyId}</div>
-                                                    <div className='category-main-price-old'>{itemData.price} {itemData.currencyId}</div>
+                                                    <div className='category-main-price-old'>{itemData.oldprice === null ?
+                                                        itemData.price : itemData.oldprice} {itemData.currencyId}</div>
                                                 </div>
                                                 <div className='add-to-cart'
                                                      onClick={ (e) => {

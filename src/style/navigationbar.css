@@ -6,6 +6,13 @@
     width: 100%;
 }
 
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+
 .back-icon {
     display: inline-block;
     margin-left: 20px;
@@ -39,7 +46,7 @@
     position: fixed;
     z-index: 3;
     top: 0;
-    width: 100%;
+    width: 100vw;
 }
 
 .select-city {
@@ -50,10 +57,11 @@
     background-size: 10px 10px;
     background-position:right center;
     border: none;
+    width: 70px;
 }
 
 .select-box {
-    width: 30px;
+    width: 35px;
     float: left;
 }
 

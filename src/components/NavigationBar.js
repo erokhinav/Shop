@@ -14,6 +14,7 @@ import {
 
 const mapStateToProps = state => {
     return {
+        activePanel: state.activePanel,
         cart: state.cart,
         panelBack: state.panelBack,
         panelForward: state.panelForward,
@@ -24,8 +25,8 @@ const mapDispatchToProps = dispatch => {
     return {
         setActivePanel: panel => dispatch(setActivePanel(panel)),
         viewForward: newView => dispatch(viewForward(newView)),
-        goForward: view => dispatch(goForward(view)),
-        goBack: view => dispatch(goBack(view)),
+        goForward: () => dispatch(goForward()),
+        goBack: () => dispatch(goBack()),
     };
 };
 
@@ -56,8 +57,10 @@ class ConnectedNavigationBar extends React.Component {
                         {/*</UI.FormLayout>*/}
                         <div className='cart-button' onClick={() => {
                             // this.props.setActivePanel('Cart')
-                            self.props.viewForward('Cart');
-                            connect.send('VKWebAppViewUpdateNavigationState', {canBack: true, canForward: false});
+                            if (this.props.activePanel != 'Cart') {
+                                self.props.viewForward('Cart');
+                                connect.send('VKWebAppViewUpdateNavigationState', {canBack: true, canForward: false});
+                            }
                         }
                         }>
                             <div className='cart-button-text'>{cart.length} товаров</div>

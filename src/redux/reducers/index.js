@@ -6,6 +6,9 @@ import { ADD_TO_CART } from "../constants/action-types";
 import { GO_BACK } from "../constants/action-types";
 import { GO_FORWARD } from "../constants/action-types";
 import { VIEW_FORWARD } from "../constants/action-types";
+import { SET_PHONE_NUMBER } from "../constants/action-types";
+import { SET_NAME } from "../constants/action-types";
+import { SET_ADDRESS } from "../constants/action-types";
 
 const initialState = {
     activePanel: 'Main',
@@ -15,6 +18,9 @@ const initialState = {
     cart: [],
     panelBack: [],
     panelForward: [],
+    phoneNumber: null,
+    name: null,
+    address: null,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -38,12 +44,12 @@ const rootReducer = (state = initialState, action) => {
         case GO_BACK:
             return { ...state,
                 panelBack: state.panelBack.slice(0, -1),
-                panelForward: [...state.panelForward, action.payload],
+                panelForward: [...state.panelForward, state.activePanel],
                 activePanel: state.panelBack[state.panelBack.length - 1], };
         case GO_FORWARD:
             console.log(state);
             return { ...state,
-                panelBack: [...state.panelBack, action.payload],
+                panelBack: [...state.panelBack, state.activePanel],
                 panelForward: state.panelForward.slice(0, -1),
                 activePanel: state.panelForward[state.panelForward.length - 1] };
         case VIEW_FORWARD:
@@ -54,6 +60,15 @@ const rootReducer = (state = initialState, action) => {
                 panelBack: newPanelBack,
                 panelForward: [],
                 activePanel: action.payload };
+        case SET_PHONE_NUMBER:
+            return { ...state,
+                phoneNumber: action.payload };
+        case SET_NAME:
+            return { ...state,
+                name: action.payload };
+        case SET_ADDRESS:
+            return { ...state,
+                address: action.payload };
         default:
             return state;
     }
