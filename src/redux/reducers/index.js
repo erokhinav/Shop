@@ -47,13 +47,11 @@ const rootReducer = (state = initialState, action) => {
                 panelForward: [...state.panelForward, state.activePanel],
                 activePanel: state.panelBack[state.panelBack.length - 1], };
         case GO_FORWARD:
-            console.log(state);
             return { ...state,
                 panelBack: [...state.panelBack, state.activePanel],
                 panelForward: state.panelForward.slice(0, -1),
                 activePanel: state.panelForward[state.panelForward.length - 1] };
         case VIEW_FORWARD:
-            // console.log(action.payload.newView);
             let newPanelBack = state.panelBack.slice();
             newPanelBack.push(state.activePanel);
             return { ...state,

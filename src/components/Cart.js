@@ -4,7 +4,6 @@ import '@vkontakte/vkui/dist/vkui.css';
 import '../style/cart.css';
 import {goBack, goForward, setActivePanel, setItemData, setPhoneNumber, setName, setAddress} from '../redux/actions';
 import {connect} from 'react-redux';
-import {parse} from '../lib/yandex';
 
 const mapStateToProps = state => {
     return {
@@ -53,8 +52,6 @@ class ConnectedCart extends React.Component {
         this.state.currency = currency;
 
         let connect = this.props.connect;
-        this.navigationListener = this.props.parent.navigationListener.bind(this);
-        connect.subscribe(this.navigationListener);
 
         if (this.props.cart.length > 0) {
             let self = this;
@@ -83,12 +80,9 @@ class ConnectedCart extends React.Component {
             }
 
             if (this.props.address === null) {
-                console.log('subscribe');
                 connect.subscribe((e) => {
                     e = e.detail;
                     if (e['type'] === 'VKWebAppGeodataResult') {
-                        self.props.setName(e['data']['first_name'] + ' ' + e['data']['last_name']);
-                    } else if (e['type'] === 'VKWebAppGeodataFail') {
                         self.getAddress([e['data']['lat'], e['data']['long']]);
                     }
                 });
@@ -97,11 +91,12 @@ class ConnectedCart extends React.Component {
         }
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.activePanel !== this.props.activePanel) {
-            this.props.connect.unsubscribe(this.navigationListener);
-        }
-    }
+    // componentDidUpdate(prevProps, prevState) {
+    //     if (prevProps.activePanel !== this.props.activePanel) {
+    //         console.log('cart unsubscribe');
+    //         this.props.connect.unsubscribe(this.navigationListener);
+    //     }
+    // }
 
     openNotifyDialog() {
         let self = this;
@@ -200,11 +195,6 @@ class ConnectedCart extends React.Component {
                             <UI.Pane>
                                 <div className='cart-group-title'>Доставка</div>
                                 <div className='iteminfo-option'>Способ доставки</div>
-                                {/*<div className='iteminfo-select-container'>*/}
-                                {/*<select className='iteminfo-select'>*/}
-                                {/*<option className='iteminfo-select-option'>Экспресс-доставка</option>*/}
-                                {/*</select>*/}
-                                {/*</div>*/}
                                 <UI.FormLayout v="new">
                                     <UI.Select>
                                         <option>Экспресс-доставка</option>
@@ -212,7 +202,8 @@ class ConnectedCart extends React.Component {
                                 </UI.FormLayout>
                                 <div className='iteminfo-option'>Адрес доставки</div>
                                 <UI.FormLayout v="new">
-                                    <UI.Input/>
+                                    <UI.Input
+                                        placeholder={self.props.address === null ? '' : self.props.address}/>
                                 </UI.FormLayout>
                                 <div className='iteminfo-option'>Почтовый индекс</div>
                                 <UI.FormLayout v="new">
@@ -227,15 +218,6 @@ class ConnectedCart extends React.Component {
                                         <option>VK Pay</option>
                                     </UI.Select>
                                 </UI.FormLayout>
-                                {/*<div className='checkbox-container'>*/}
-                                {/*<input type='checkbox' className='checkbox' checked='checked' />*/}
-                                {/*<div className='checkbox-text'>У меня есть промокод на скидку</div>*/}
-                                {/*</div>*/}
-
-                                {/*<label className="container">One*/}
-                                {/*<input type="checkbox" checked="checked" />*/}
-                                {/*<span className="checkmark"/>*/}
-                                {/*</label>*/}
                                 <div className='checkbox-wrapper'>
                                     <UI.List>
                                         <UI.ListItem asideContent={<UI.Switch/>}>
@@ -243,12 +225,6 @@ class ConnectedCart extends React.Component {
                                         </UI.ListItem>
                                     </UI.List>
                                 </div>
-                                {/*<div className='checkbox-container'>*/}
-                                {/*<div className='checkbox-text-container'>*/}
-                                {/*<div className='checkbox-text'>У меня есть промокод на скидку</div>*/}
-                                {/*</div>*/}
-                                {/*<UI.Switch className='checkbox'/>*/}
-                                {/*</div>*/}
                             </UI.Pane>
                         </UI.Group>
 

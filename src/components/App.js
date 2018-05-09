@@ -9,7 +9,7 @@ import Category from './Category';
 import PropTypes from "prop-types";
 import { parse } from '../lib/yandex';
 import { connect } from "react-redux";
-import {setCategory, setCategoryIndex} from "../redux/actions";
+import {goBack, goForward, setCategory, setCategoryIndex} from "../redux/actions";
 import store from "../redux/store";
 
 const mapStateToProps = state => {
@@ -26,6 +26,8 @@ const mapDispatchToProps = dispatch => {
     return {
         setCategoryIndex: index => dispatch(setCategoryIndex(index)),
         setCategory: category => dispatch(setCategory(category)),
+        goForward: () => dispatch(goForward()),
+        goBack: () => dispatch(goBack()),
     };
 };
 
@@ -38,11 +40,8 @@ class ConnectedApp extends React.Component {
         };
 
         this.market = parse('/shop/yandex.yml');
-        console.log(this.market);
 
         this.mainCategories = this.formatMainCategories(this.market);
-        // console.log(Object.keys(this.mainCategories)[0]);
-
         let categories = this.mainCategories;
         for (let index in categories) {
             if (categories.hasOwnProperty(index)) {
@@ -53,6 +52,8 @@ class ConnectedApp extends React.Component {
         let minIndex = Object.keys(this.mainCategories)[0];
         this.props.setCategoryIndex(minIndex);
         this.props.setCategory(this.mainCategories[minIndex]);
+
+        this.props.connect.subscribe(this.navigationListener.bind(this));
     }
 
     formatMainCategories(market) {
@@ -81,13 +82,8 @@ class ConnectedApp extends React.Component {
 
     navigationListener(e) {
         let connect = this.props.connect;
-        console.log('active panel: ' + this.props.activePanel);
-        console.log(e);
-        console.log(this);
         e = e.detail;
         if (e['type'] === 'VKWebAppGoBack') {
-            console.log('!');
-            console.log(store.getState());
             this.props.goBack();
             let canBack = false;
             if (this.props.panelBack.length > 0) {
@@ -96,8 +92,6 @@ class ConnectedApp extends React.Component {
             connect.send('VKWebAppViewUpdateNavigationState', {canBack: canBack, canForward: true});
 
         } else if (e['type'] === 'VKWebAppGoForward') {
-            console.log('!!');
-            console.log(store.getState());
             this.props.goForward();
             let canForward = false;
             if (this.props.panelForward.length > 0) {

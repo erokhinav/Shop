@@ -9,7 +9,6 @@ import {setActivePanel, setItemData, setCategory, setCategoryIndex,
 import {connect} from "react-redux";
 
 const mapStateToProps = state => {
-    // console.log(state);
     return {
         activePanel: state.activePanel,
         itemData: state.itemData,
@@ -52,23 +51,6 @@ class ConnectedMain extends React.Component {
         this.state.categoryPopular.name = 'Популярное';
         this.state.categoryForyou.name = 'Подобрано для вас';
         this.state.categorySpecial.name = 'Специальное предложение';
-        //
-        // let categories = this.props.categories;
-        // let categoryIndex = null;
-        // for (let index in categories) {
-        //     if (categories.hasOwnProperty(index)) {
-        //         categories[index]['key'] = index;
-        //         if (categoryIndex === null || categoryIndex > index) {
-        //             categoryIndex = index;
-        //         }
-        //     }
-        // }
-        //
-        // this.state.categoryIndex = categoryIndex;
-
-        console.log('HEY');
-        this.navigationListener = this.props.parent.navigationListener.bind(this);
-        this.props.connect.subscribe(this.navigationListener);
     }
 
     static shuffle(array) {
@@ -102,14 +84,6 @@ class ConnectedMain extends React.Component {
         this.props.connect.send('VKWebAppViewUpdateNavigationState', {canBack: true, canForward: false});
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        console.log(prevProps.activePanel + ' ' + this.props.activePanel);
-        if (prevProps.activePanel !== this.props.activePanel) {
-            console.log('YES!!');
-            this.props.connect.unsubscribe(this.navigationListener);
-        }
-    }
-
     render() {
         let mainCategories = this.props.mainCategories;
         let categories = this.props.categories;
@@ -121,13 +95,11 @@ class ConnectedMain extends React.Component {
 
         return (
             <div className='main'>
-                {/*<UI.Group>*/}
                     <UI.Gallery slideWidth='100%' align="left" style={{ height: '60vw' }} bullets="light" className='gallery-wrap'>
-                        <img className='banner-image' src="https://www.nlfit.com/nlfit/images/top-banner-714.jpg"/>
+                        <img className='banner-image' src="https://sun9-7.userapi.com/c840423/v840423615/80696/85IZK-KeoOc.jpg"/>
                         <img className='banner-image' src="https://pp.userapi.com/c844520/v844520489/35e73/Madv2qJ_Mww.jpg"/>
                         <img className='banner-image' src="https://pp.userapi.com/c845218/v845218489/35a39/H2I9jGOvxqE.jpg"/>
                     </UI.Gallery>
-                {/*</UI.Group>*/}
 
                 <UI.Group>
                     <UI.Header className='group-header' level='1' aside={
@@ -145,10 +117,8 @@ class ConnectedMain extends React.Component {
                     <UI.Gallery slideWidth='300px' style={{ height: 205 }} className='gallery-wrap'>
                     {
                         <div className='gallery-container'>
-                            {/*<div className='image-container'>*/}
                                 <img className='foryou-image'
                                     src="https://pp.userapi.com/c847216/v847216002/30757/glikqebLHPg.jpg"/>
-                            {/*</div>*/}
                             <div className='gallery-item-name'>Штанги из Германии</div>
                             <div className='gallery-item-description'>Удобство и комфорт в новом исполнении</div>
                         </div>
@@ -162,54 +132,12 @@ class ConnectedMain extends React.Component {
                     </UI.Gallery>
                 </UI.Group>
 
-                {/*<UI.Group>*/}
-                    {/*<UI.Header className='group-header' level='1' aside={*/}
-                        {/*<span className='all-items'*/}
-                              {/*style={{ color: colors.accentBlue }}*/}
-                              {/*onClick={ () => {} }>*/}
-                                {/*Показать все*/}
-                            {/*</span>*/}
-                    {/*}>*/}
-                        {/*<div className='group-title font'>*/}
-                            {/*Популярное*/}
-                        {/*</div>*/}
-                    {/*</UI.Header>*/}
-
-                    {/*<UI.Gallery slideWidth='150px' style={{ height: 245 }} className='gallery-wrap'>*/}
-                        {/*<div className='gallery-container'>*/}
-                            {/*<img className='popular-image'*/}
-                                 {/*src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>*/}
-                            {/*<div className='popular-name'>Особый случай</div>*/}
-                            {/*<div className='popular-description'>Как выделиться из толпы</div>*/}
-                        {/*</div>*/}
-                        {/*<div className='gallery-container'>*/}
-                            {/*<img className='popular-image'*/}
-                                 {/*src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>*/}
-                            {/*<div className='popular-name'>ASOS 4505</div>*/}
-                            {/*<div className='popular-description'>Спортивная экипировка</div>*/}
-                        {/*</div>*/}
-                        {/*<div className='gallery-container'>*/}
-                            {/*<img className='popular-image'*/}
-                                 {/*src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>*/}
-                            {/*<div className='popular-name'>Особый случай</div>*/}
-                            {/*<div className='popular-description'>Как выделиться из толпы</div>*/}
-                        {/*</div>*/}
-                        {/*<div className='gallery-container'>*/}
-                            {/*<img className='popular-image'*/}
-                                 {/*src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>*/}
-                            {/*<div className='popular-name'>Особый случай</div>*/}
-                            {/*<div className='popular-description'>Как выделиться из толпы</div>*/}
-                        {/*</div>*/}
-                    {/*</UI.Gallery>*/}
-                {/*</UI.Group>*/}
-
                 <UI.Group>
                     <UI.Header className='group-header' level='1' aside={
                         <span className='all-items'
                               style={{ color: colors.accentBlue }}
                               onClick={ () => {
                                   self.props.setCategory(popular);
-                                  // self.props.setActivePanel('Category');
                                   self.viewForward('Category');
                               } }>
                                 Показать все
@@ -226,7 +154,6 @@ class ConnectedMain extends React.Component {
                                 return (
                                     <div className='gallery-container' onClick={() => {
                                         self.props.setItemData(itemData);
-                                        // self.props.setActivePanel('ItemInfo')
                                         self.viewForward('ItemInfo');
                                     }}>
                                         <img className='popular-image'
@@ -271,7 +198,6 @@ class ConnectedMain extends React.Component {
                     <div className='categories-container'>
                         {
                             mainCategories.map(function(itemData) {
-                                // {console.log(itemData)}
                                 return (
                                     <div className='category-main'
                                          style={
@@ -297,7 +223,6 @@ class ConnectedMain extends React.Component {
                         <span className='all-items'
                               style={{ color: colors.accentBlue }}
                               onClick={ () => {
-                                  // self.props.setActivePanel('Category')
                                   self.viewForward('Category');
                               }}>
                                 Показать все
@@ -311,11 +236,9 @@ class ConnectedMain extends React.Component {
                     <UI.List>
                         {
                             mainCategories[self.props.categoryIndex].offers.slice(0, 4).map(function(itemData) {
-                                // console.log(mainCategories[self.props.categoryIndex].offers);
                                 return (
                                     <UI.ListItem onClick={() => {
                                         self.props.setItemData(itemData);
-                                        // self.props.setActivePanel('ItemInfo')
                                         self.viewForward('ItemInfo');
                                     }}>
                                         <div>
@@ -344,7 +267,6 @@ class ConnectedMain extends React.Component {
                               style={{ color: colors.accentBlue }}
                               onClick={ () => {
                                   self.props.setCategory(self.state.categoryPopular);
-                                  // self.props.setActivePanel('Category');
                                   self.viewForward('Category');
                               } }>
                                 Показать все
@@ -361,7 +283,6 @@ class ConnectedMain extends React.Component {
                                 return (
                                     <div className='gallery-container' onClick={() => {
                                         self.props.setItemData(itemData);
-                                        // self.props.setActivePanel('ItemInfo')
                                         self.viewForward('ItemInfo');
                                     }}>
                                         <img className='category-popular-image' src={itemData.picture}/>
@@ -372,14 +293,6 @@ class ConnectedMain extends React.Component {
                                 );
                             })
                         }
-                        {/*{*/}
-                            {/*<div className='gallery-container'>*/}
-                                {/*<img className='category-popular-image'*/}
-                                     {/*src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>*/}
-                                {/*<div className='gallery-item-name'>Air Jordan XI LOW</div>*/}
-                                {/*<div className='gallery-item-description'>Роскошная модель XI возвращается! При покупке</div>*/}
-                            {/*</div>*/}
-                        {/*}*/}
                     </UI.Gallery>
                 </UI.Group>
 
@@ -389,7 +302,6 @@ class ConnectedMain extends React.Component {
                               style={{ color: colors.accentBlue }}
                               onClick={ () => {
                                   self.props.setCategory(self.state.categoryForyou);
-                                  // self.props.setActivePanel('Category');
                                   self.viewForward('Category');
                               } }>
                                 Показать все
@@ -410,7 +322,6 @@ class ConnectedMain extends React.Component {
                                         <UI.ListItem>
                                             <div onClick={() => {
                                                 self.props.setItemData(item1);
-                                                // self.props.setActivePanel('ItemInfo')
                                                 self.viewForward('ItemInfo');
                                             }}>
                                                 <img className='category-main-image' src={item1.picture}/>
@@ -428,7 +339,6 @@ class ConnectedMain extends React.Component {
                                         <UI.ListItem>
                                             <div onClick={() => {
                                                 self.props.setItemData(itemData);
-                                                // self.props.setActivePanel('ItemInfo')
                                                 self.viewForward('ItemInfo');
                                             }}>
                                                 <img className='category-main-image' src={item2.picture}/>
@@ -454,7 +364,6 @@ class ConnectedMain extends React.Component {
                               style={{ color: colors.accentBlue }}
                               onClick={ () => {
                                   self.props.setCategory(self.state.categorySpecial);
-                                  // self.props.setActivePanel('Category');
                                   self.viewForward('Category');
                               }
                               }>
@@ -469,11 +378,9 @@ class ConnectedMain extends React.Component {
                     <UI.List>
                         {
                             self.state.categorySpecial.offers.map(function(itemData) {
-                                // console.log(mainCategories[self.props.categoryIndex].offers);
                                 return (
                                     <UI.ListItem onClick={() => {
                                         self.props.setItemData(itemData);
-                                        // self.props.setActivePanel('ItemInfo')
                                         self.viewForward('ItemInfo');
                                     }}>
                                         <div>

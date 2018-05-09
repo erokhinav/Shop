@@ -11,7 +11,7 @@ connect.send('VKWebAppGetAuthToken', {"app_id": 6458026, "scope": "video"});
 
 connect.subscribe(function(e) {
     e = e.detail;
-    console.log('HERE:');
+    console.log('EVENT');
     console.log(e);
 });
 

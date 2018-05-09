@@ -50,13 +50,7 @@ class ConnectedNavigationBar extends React.Component {
                                 <option>Москва</option>
                             </select>
                         </div>
-                        {/*<UI.FormLayout v="new">*/}
-                            {/*<UI.Select>*/}
-                                {/*<option>Экспресс-доставка</option>*/}
-                            {/*</UI.Select>*/}
-                        {/*</UI.FormLayout>*/}
                         <div className='cart-button' onClick={() => {
-                            // this.props.setActivePanel('Cart')
                             if (this.props.activePanel != 'Cart') {
                                 self.props.viewForward('Cart');
                                 connect.send('VKWebAppViewUpdateNavigationState', {canBack: true, canForward: false});
@@ -68,22 +62,6 @@ class ConnectedNavigationBar extends React.Component {
                         </div>
                     </UI.Pane>
                 </div>
-
-                {/*<div className='bottom-pane'>*/}
-                    {/*<UI.Pane className='footer'>*/}
-                        {/*<div className='navigation'>*/}
-                            {/*<IconChevron_back28 className='back-icon'*/}
-                                                {/*fill={this.props.backView === undefined ?*/}
-                                                    {/*colors.placeholderForeground : colors.accentBlue}/>*/}
-                            {/*<IconChevron_back28 className='forward-icon'*/}
-                                            {/*fill={colors.accentBlue}/>*/}
-                        {/*</div>*/}
-                        {/*<div className='share'>*/}
-                            {/*<IconReply_outline24 className='share-icon'*/}
-                                                {/*fill={colors.accentBlue}/>*/}
-                        {/*</div>*/}
-                    {/*</UI.Pane>*/}
-                {/*</div>*/}
             </div>
         )
     }

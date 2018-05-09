@@ -27,23 +27,9 @@ const mapDispatchToProps = dispatch => {
 };
 
 class ConnectedCategory extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.navigationListener = this.props.parent.navigationListener.bind(this);
-        this.props.connect.subscribe(this.navigationListener);
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.activePanel !== this.props.activePanel) {
-            this.props.connect.unsubscribe(this.navigationListener);
-        }
-    }
 
     render() {
         let title = this.props.category.name;
-        console.log('Category');
-        console.log(this.props.category);
         let items = this.props.category.offers;
         let size = items.length;
         let self = this;
@@ -62,7 +48,6 @@ class ConnectedCategory extends React.Component {
                                 return (
                                     <div className='item-wrap' onClick={() => {
                                             self.props.setItemData(itemData);
-                                            // self.props.setActivePanel('ItemInfo');
                                             self.props.viewForward('ItemInfo');
                                             self.props.connect.send('VKWebAppViewUpdateNavigationState', {canBack: true, canForward: false});
                                     }}>
@@ -80,28 +65,6 @@ class ConnectedCategory extends React.Component {
                                 )
                             })
                         }
-                        {/*<div className='item-wrap'>*/}
-                            {/*<div className='item-container'>*/}
-                                {/*<div className='item'>*/}
-                                    {/*<img className='item-photo' src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>*/}
-                                    {/*<div className='item-info'>*/}
-                                        {/*<div className='item-name'>Nike Air Max 270 Flyknit</div>*/}
-                                        {/*<div className='item-price'>8 800 руб.</div>*/}
-                                    {/*</div>*/}
-                                {/*</div>*/}
-                            {/*</div>*/}
-                        {/*</div>*/}
-                        {/*<div className='item-wrap'>*/}
-                            {/*<div className='item-container'>*/}
-                                {/*<div className='item'>*/}
-                                    {/*<img className='item-photo' src="https://content.nike.com/content/dam/one-nike/en_us/Jordan/sp18/slp/desktop/0328-jordan-slp-p4-iridescent.jpg.transform/full-screen/0328-jordan-slp-p4-iridescent.jpg"/>*/}
-                                    {/*<div className='item-info'>*/}
-                                        {/*<div className='item-name'>Nike Air Max 270 Flyknit</div>*/}
-                                        {/*<div className='item-price'>8 800 руб.</div>*/}
-                                    {/*</div>*/}
-                                {/*</div>*/}
-                            {/*</div>*/}
-                        {/*</div>*/}
                     </div>
                 </UI.List>
             </UI.Group>
