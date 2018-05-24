@@ -26,9 +26,9 @@ class Offer {
         this.currencyId = currencyId;
         this.categoryId = categoryId;
         this.picture = picture;
-        this.name = name;
-        this.description = description;
-        this.model = model;
+        this.name = decodeXML(name);
+        this.description = decodeXML(description);
+        this.model = decodeXML(model);
         this.store = store;
         this.pickup = pickup;
         this.delivery = delivery;
@@ -43,6 +43,17 @@ class Offer {
         this.barcode = barcode;
         this.cpa = cpa;
     }
+}
+
+function decodeXML(str) {
+    if (str === null) {
+        return str;
+    }
+    return str.replace(/&apos;/g, "'")
+        .replace(/&quot;/g, '"')
+        .replace(/&gt;/g, '>')
+        .replace(/&lt;/g, '<')
+        .replace(/&amp;/g, '&');
 }
 
 function loadYML(url) {

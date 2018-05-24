@@ -49,7 +49,7 @@ class ConnectedCategory extends React.Component {
                                     <div className='item-wrap' onClick={() => {
                                             self.props.setItemData(itemData);
                                             self.props.viewForward('ItemInfo');
-                                            self.props.connect.send('VKWebAppViewUpdateNavigationState', {canBack: true, canForward: false});
+                                            self.props.connect.send('VKWebAppViewUpdateNavigationState', {"canBack": true, "canForward": false});
                                     }}>
                                         <div className='item-container'>
                                             <div className='item'>

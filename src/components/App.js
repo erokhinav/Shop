@@ -39,7 +39,7 @@ class ConnectedApp extends React.Component {
             popout: null,
         };
 
-        this.market = parse('/shop/yandex.yml');
+        this.market = parse('/yandex.yml');
 
         this.mainCategories = this.formatMainCategories(this.market);
         let categories = this.mainCategories;
@@ -89,7 +89,7 @@ class ConnectedApp extends React.Component {
             if (this.props.panelBack.length > 0) {
                 canBack = true;
             }
-            connect.send('VKWebAppViewUpdateNavigationState', {canBack: canBack, canForward: true});
+            connect.send('VKWebAppViewUpdateNavigationState', {"canBack": canBack, "canForward": true});
 
         } else if (e['type'] === 'VKWebAppGoForward') {
             this.props.goForward();
@@ -97,7 +97,7 @@ class ConnectedApp extends React.Component {
             if (this.props.panelForward.length > 0) {
                 canForward = true;
             }
-            connect.send('VKWebAppViewUpdateNavigationState', {canBack: true, canForward: canForward});
+            connect.send('VKWebAppViewUpdateNavigationState', {"canBack": true, "canForward": canForward});
         }
     }
 

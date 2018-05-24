@@ -91,13 +91,6 @@ class ConnectedCart extends React.Component {
         }
     }
 
-    // componentDidUpdate(prevProps, prevState) {
-    //     if (prevProps.activePanel !== this.props.activePanel) {
-    //         console.log('cart unsubscribe');
-    //         this.props.connect.unsubscribe(this.navigationListener);
-    //     }
-    // }
-
     openNotifyDialog() {
         let self = this;
         let parent = this.props.parent;

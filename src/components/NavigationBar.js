@@ -53,7 +53,8 @@ class ConnectedNavigationBar extends React.Component {
                         <div className='cart-button' onClick={() => {
                             if (this.props.activePanel != 'Cart') {
                                 self.props.viewForward('Cart');
-                                connect.send('VKWebAppViewUpdateNavigationState', {canBack: true, canForward: false});
+                                connect.send('VKWebAppViewUpdateNavigationState',
+                                    {"canBack": true, "canForward": false});
                             }
                         }
                         }>
